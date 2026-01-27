@@ -1,34 +1,43 @@
-class Player{
-    //costruttore
-    constructor(imgInit){ 
-        this.x=5;
-        this.y=550;
-        this.vx=20;//spostamento orizzontale
-        this.vy=20;//spostamento verticale 
-        this.imgShow=imgInit;
-        this.ground=550;
-        this.jumpReady=true;
-    }
-    jump(){ 
-        this.y=this.y-this.vy;
-  
-  // If we are on the ground, then we should be able to jump and we should stop moving vertically
-  if(this.y >= ground){
-    this.jumpReady = true;
-    this.vy= 0;
-  }
-  // if we are not on the ground, then we are not ready to jump
-  else{
-    jumpReady = false;
-    vy += 2;
-  }
+class Player {
+    constructor(immagineIniziale,x,y) {
+        this.x = x;
+        this.y = y;
+        this.vx=20;
+        this.imgShow = immagineIniziale;
 
-    }
-    moveDx(){
-        this.x=this.x+this.vx; 
-    }
-    moveSx(){
-        this.x=this.x-this.vx; 
+        this.speedY = 0;        
+        this.gravity = 3;    
+        this.jumpHeight = 35;  
+        this.ground = true;
+
+        this.collisione=false;
+
+        this.w=this.imgShow.width;
+        this.h=this.imgShow.height;
     }
 
+    moveDx() {
+        this.x =this.x+this.vx;
+    }
+
+    moveSx() {
+        this.x = this.x-this.vx;
+    }
+
+    jump() {
+        if (this.ground) { 
+            this.speedY = -this.jumpHeight;
+            this.ground = false;
+        }
+    }
+
+    discesa() {
+        this.speedY += this.gravity;
+        this.y += this.speedY;
+        if (this.y >= 600) {
+            this.y = 600;
+            this.speedY = 0;
+            this.ground = true;
+        }
+    }
 }

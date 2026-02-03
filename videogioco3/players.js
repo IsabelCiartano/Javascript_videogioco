@@ -29,8 +29,9 @@ class Player {
     discesa() {
         this.speedY += this.gravity;
         this.y += this.speedY;
-        if (this.y >= 600) {
-            this.y = 600;
+        
+        if (this.y >= 680) {
+            this.y = 680;
             this.speedY = 0;
             this.ground = true;
         }

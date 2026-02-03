@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array in Javascript</title>
+</head>
+
+<body>
+    <script>
+        // Creazione di un array
+        const studenti = ["Luca", "Anna", "Marco"];
+        console.log(studenti);
+
+        //inversione dell'array
+        studenti.reverse();
+        console.log(studenti); // ["Marco","Anna", "Luca"]
+
+        // ordinamento alfabetico
+        const a = ["banana", 1, false, null]
+        a.sort();
+        console.log(a); // ["Anna", "Luca", "Marco"]
+        studenti.sort();
+        console.log(studenti); // ["Anna", "Luca", "Marco"]
+
+        // Inserire un elemento alla FINE → push()
+        studenti.push("Giulia");
+        console.log(studenti);      // ["Anna", "Luca", "Marco", "Giulia"]
+
+        // Eliminare l'ultimo elemento → pop()
+        let ultimo = studenti.pop();
+        console.log(ultimo);   // Giulia
+        console.log(studenti); // ["Anna", "Luca", "Marco"]
+
+        // Inserire un elemento all'INIZIO → unshift()
+        studenti.unshift("Paolo");
+        console.log(studenti);  // ["Paolo", "Anna", "Luca", "Marco"]
+
+        // Eliminare il primo elemento → shift()
+        let primo = studenti.shift();
+        console.log(primo);    // Paolo
+        console.log(studenti); // ["Anna", "Luca", "Marco"]
+
+        //Inserire / eliminare in una posizione specifica → splice()
+        studenti.splice(1, 0, "Sara");
+        console.log(studenti);      // ["Anna", "Sara", "Luca", "Marco"]
+
+        // Significato:  splice(indice, quanti_eliminare, nuovo_elemento)
+     
+        // Eliminare un elemento
+        studenti.splice(2, 1);
+        console.log(studenti);  // ["Anna", "Sara", "Marco"]
+
+        // Sostituire un elemento
+        studenti.splice(1, 1, "Giovanni");
+        console.log(studenti);      // ["Anna", "Giovanni", "Marco"]
+
+        // Eliminare senza modificare l'array → slice()
+        let parte = studenti.slice(1, 3);
+        console.log("PARTE " + parte);    // ["Giovanni", "Marco"]
+        console.log(studenti); // array invariato
+
+        // Esempio COSA SUCCEDE?
+        const numeri = [10, 20, 30];
+
+        numeri.push(40);
+        numeri.shift();
+        numeri.splice(1, 0, 25);
+
+        console.log("numeri " + numeri);
+
+        // ciclo for per scorrere un array
+        console.log("Ciclo for classico");
+        for (let i = 0; i < studenti.length; i++) {
+            console.log("Studente " + i + ": " + studenti[i]);
+        }
+        // ciclo for...of per scorrere un array
+        console.log("Ciclo for...of");
+        for (let studente of studenti) {
+            console.log("Studente: " + studente);
+        }
+        // ciclo for in per scorrere un array
+        console.log("Ciclo for...in");
+        for (let index in studenti) {
+            console.log("Studente " + index + ": " + studenti[index]);
+        }
+
+        // length è un attributo che indica la lunghezza dell'array
+        // si può modificare 
+        console.log("Lunghezza originale: " + studenti.length);
+        studenti.length = 4;
+
+        console.log("Lunghezza modificata: " + studenti.length);
+        console.log(studenti); // ["Anna", "Giovanni"]
+
+        // ciclo for per scorrere un array
+        console.log("Ciclo for classico");
+        for (let i = 0; i < studenti.length; i++) {
+            console.log("Studente " + i + ": " + studenti[i]);
+        }
+        // ciclo for...of per scorrere un array
+        console.log("Ciclo for...of");
+        for (let studente of studenti) {
+            console.log("Studente: " + studente);
+        }
+      
+        // ciclo for in salta gli elementi "vuoti"
+        console.log("Ciclo for...in");
+        for (let index in studenti) {
+            console.log("Studente " + index + ": " + studenti[index]);
+        }
+
+        //aggiungo un elemento in una posizione oltre la lunghezza attuale
+        studenti[6] = "Elena";
+        studenti[0] = null
+        console.log(studenti); // ["Anna", "Giovanni", <3 empty items>, "Elena"]
+        console.log("Lunghezza aggiornata: " + studenti.length); // 7
+
+        // ciclo for in salta gli elementi "vuoti"
+        console.log("Ciclo for...in");
+        for (let index in studenti) {
+            console.log("Studente " + index + ": " + studenti[index]);
+        }
+        console.log("tipo [0]: " + typeof(studenti[0])); // object (null è di tipo object)
+        console.log("tipo [1]: " + typeof(studenti[1])); // string  
+        console.log("tipo [3]: " + typeof(studenti[3])); // undefined (elemento vuoto)
+        
+        const s =[0,null,10,null, ,];
+        console.log("ciclo con for of ");
+        for(let numero of s){
+            console.log(numero);
+        }
+        console.log("ciclo con for in");
+        for (let index in s){
+            console.log(s[index]);
+        }
+
+    </script>
+
+</body>
+</html>

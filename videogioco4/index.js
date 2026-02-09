@@ -18,7 +18,7 @@ const nemici=[];
 function preload(){//carica le immagini del videogioco
     backimg=loadImage('./img/sfondo1.png');
     backimg2=loadImage('./img/sfondo2.jpg');
-    pause=loadImage('./img/pausa.jpeg');
+    pause=loadImage('./img/pausa.png');
     imgF=loadImage('./img/gato.png');
     imgSx=loadImage('./img/gatosinistra.png');
     imgDx=loadImage('./img/gatodestra.png');
@@ -101,8 +101,6 @@ function draw(){//va in loop per il frame rate ridisegna tutto
         schema++;
         player.x=10;
     }
-   
-
 }
 
 

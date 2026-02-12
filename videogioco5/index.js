@@ -31,7 +31,7 @@ function preload(){//carica le immagini del videogioco
 
 //setup code (schermata di caricamento)
 function setup(){
-    createCanvas(1710,900);
+    createCanvas(windowWidth, windowHeight);
     frameRate(60);
     player=new Player(imgF,100,terra);
     nemico=new Player(imgN,700,terra);

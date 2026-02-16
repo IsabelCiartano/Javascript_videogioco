@@ -14,6 +14,7 @@ let nemico;
 let nemico2;
 let nemico3;
 const nemici=[];
+const nemici2=[];
 
 // Variabili per il menu di selezione
 let personaggioScelto = null;
@@ -28,7 +29,7 @@ let pg2Dx, pg2Sx, pg2F;
 
 function preload(){//carica le immagini del videogioco
     backimg=loadImage('./img/sfondo1.png');
-    backimg2=loadImage('./img/sfondo2.jpg');
+    backimg2=loadImage('./img/casa.png');
     pause=loadImage('./img/pausa.png');
     
     // Personaggio 1
@@ -125,16 +126,18 @@ function iniziaGioco(immaginePG, imgDxPG, imgSxPG) {
     imgDx = imgDxPG;
     imgSx = imgSxPG;
     
-    nemici.length = 0;
+   
     
     // Inizializza i nemici
     nemico = new Player(imgNdx, 900, terra-100);
     nemico.setupEnemy(700, 1400, imgNdx, imgNsx, 4);
     nemici.push(nemico);
+    nemici2.push(nemico);
     
     nemico2 = new Player(imgNsx, 1200, terra-100);
     nemico2.setupEnemy(1000, 1700, imgNdx, imgNsx, 2.5);
     nemici.push(nemico2);
+    nemici2.push(nemico2);
     // Passa allo schema di gioco
     schema = 3;
 }
@@ -257,10 +260,32 @@ function draw(){//va in loop per il frame rate ridisegna tutto
         }
         
     } else if(schema==4){
-        background(backimg2);
+        background(backimg2); 
+        fill(255);
+        textSize(30);
+        text("Livello 2",80,40);
         player.discesa();
+     
+        // Muovi e disegna i nemici
+        for(let n of nemici2){
+            n.moveDXSX(); // Movimento automatico del nemico
+            image(n.imgShow, n.x, n.y);
+        }
         
-        image(player.imgShow,player.x,player.y);
+        image(player.imgShow, player.x, player.y);
+        
+        // Gestisci collisioni
+        for(let i = nemici2.length - 1; i >= 0; i--){
+            if(collisioneDallAlto(player, nemici2[i])){
+                player.speedY = -player.jumpHeight / 1.5;
+                nemici2.splice(i, 1);
+            }
+        }
+        
+        if(player.x>=1700){
+            schema++;
+            player.x=10;
+        }
         
     } else if (schema == 0){
         background(pause);

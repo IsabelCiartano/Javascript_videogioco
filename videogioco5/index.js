@@ -32,17 +32,21 @@ function preload(){//carica le immagini del videogioco
 //setup code (schermata di caricamento)
 function setup(){
     createCanvas(windowWidth, windowHeight);
-    frameRate(60);
-    player=new Player(imgF,100,terra);
-    nemico=new Player(imgN,700,terra);
+    frameRate(80);
+    player = new Player(imgF, 100, terra);
+    
+    // Configura i nemici con i loro limiti di movimento
+    
+    nemico = new Player(imgNdx, 900, terra-100);
+    nemico.setupEnemy(700, 1100, imgNdx, imgNsx, 4);
     nemici.push(nemico);
-    nemico2=new Player(imgNdx,900,terra-100);
+    
+    nemico2 = new Player(imgNsx, 1200, terra-100);
+    nemico2.setupEnemy(1000, 1400, imgNdx, imgNsx, 2.5);
     nemici.push(nemico2);
-    nemico3=new Player(imgNsx,1200,terra-100);
-    nemici.push(nemico3);
-    ferm=0;
-    schema=1;
-   
+    
+    ferm = 0;
+    schema = 1;
 }
 function keyPressed(){
     if(key == "w"){
@@ -96,21 +100,25 @@ function collisioneDallAlto(player, nemico){
 
 
 function draw(){//va in loop per il frame rate ridisegna tutto 
-    if (schema==2)  {
+      if (schema==2) {
         background(backimg);  
         player.discesa();
      
-        image(player.imgShow,player.x,player.y);
+        // Muovi e disegna i nemici
         for(let n of nemici){
-            image(n.imgShow,n.x,n.y);
+            n.moveDXSX(); // Movimento automatico del nemico
+            image(n.imgShow, n.x, n.y);
         }
-     for(let i = nemici.length - 1; i >= 0; i--){
-    if(collisioneDallAlto(player, nemici[i])){
-        player.speedY = -player.jumpHeight / 1.5; // rimbalzo
-        nemici.splice(i, 1);
-    }
-}
         
+        image(player.imgShow, player.x, player.y);
+        
+        // Gestisci collisioni
+        for(let i = nemici.length - 1; i >= 0; i--){
+            if(collisioneDallAlto(player, nemici[i])){
+                player.speedY = -player.jumpHeight / 1.5;
+                nemici.splice(i, 1);
+            }
+        }
     }else if(schema==3){
         background(backimg2);
         player.discesa();

@@ -52,5 +52,3 @@ Solo superando tutti gli ostacoli potrà finalmente riposare.
 - Linguaggio:  html, javascript 
 - Librerie principali:  p5.js
 
-npm start
-

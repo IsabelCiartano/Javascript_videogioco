@@ -13,6 +13,7 @@ let terra=680;
 let nemico;
 let nemico2;
 let nemico3;
+let nemico4;
 const nemici=[];
 const nemici2=[];
 
@@ -46,6 +47,8 @@ function preload(){//carica le immagini del videogioco
   
     imgNdx=loadImage('./img/nemicoDX.png');
     imgNsx=loadImage('./img/nemicoSX.png');
+    imgN2dx=loadImage('./img/lupodx.png');
+    imgN2sx=loadImage('./img/luposx.png');
     
     // Assegna le immagini ai personaggi selezionabili
     personaggio1Img = pg1F;
@@ -126,18 +129,24 @@ function iniziaGioco(immaginePG, imgDxPG, imgSxPG) {
     imgDx = imgDxPG;
     imgSx = imgSxPG;
     
-   
-    
     // Inizializza i nemici
     nemico = new Player(imgNdx, 900, terra-100);
     nemico.setupEnemy(700, 1400, imgNdx, imgNsx, 4);
     nemici.push(nemico);
-    nemici2.push(nemico);
     
     nemico2 = new Player(imgNsx, 1200, terra-100);
     nemico2.setupEnemy(1000, 1700, imgNdx, imgNsx, 2.5);
     nemici.push(nemico2);
-    nemici2.push(nemico2);
+
+    nemico3 = new Player(imgN2dx, 900, terra);
+    nemico3.setupEnemy(700, 1400, imgN2dx, imgN2sx, 4);
+    nemici2.push(nemico3);
+
+    
+    nemico4 = new Player(imgN2sx, 900, terra);
+    nemico4.setupEnemy(700, 1400, imgN2dx, imgN2sx, 2.5);
+    nemici2.push(nemico4);
+
     // Passa allo schema di gioco
     schema = 3;
 }

@@ -9,6 +9,7 @@ class Player {
         this.gravity = 3;    
         this.jumpHeight = 40;  
         this.ground = true;
+        this.sullaTerraPiattaforma = false;//controlla se è su una piattaforma 
         
         // Aggiungi questa proprietà per il movimento dei nemici
         this.dir = 1; // 1 = destra, -1 = sinistra
@@ -30,10 +31,11 @@ class Player {
     }
 
     jump() {
-        if (this.ground) { 
-            this.speedY = -this.jumpHeight;
-            this.ground = false;
-        }
+        if (this.ground || this.sullaTerraPiattaforma) {
+    this.speedY = -this.jumpHeight;
+    this.ground = false;
+    this.sullaTerraPiattaforma = false;
+}
     }
 
     discesa() {

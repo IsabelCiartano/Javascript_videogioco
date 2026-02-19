@@ -41,8 +41,8 @@ let pg2Dx, pg2Sx, pg2F;
 
 //piattaforme
 const piattaformeLv2 = [
-  { x: 370, y: terra-40, w: 400, h: 20 },
-  { x: 900, y: 430, w: 200, h: 20 }
+  { x: 380, y: terra - 100, w: 400, h: 20 },  // piattaforma 1, raggiungibile da terra
+  { x: 700, y: terra - 200, w: 200, h: 20 }   // piattaforma 2, raggiungibile solo dalla 1
 ];
 
 function preload(){

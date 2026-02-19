@@ -1,5 +1,6 @@
 let backimg;
 let backimg2;
+let backimg3;
 let gameover;
 let pause;
 let imgDx;
@@ -15,8 +16,10 @@ let nemico;
 let nemico2;
 let nemico3;
 let nemico4;
+let nemico5;
 const nemici=[];
 const nemici2=[];
+const nemici3=[];
 
 //  Vite e invincibilità ----
 let vite = 3;
@@ -39,6 +42,7 @@ let pg2Dx, pg2Sx, pg2F;
 function preload(){
     backimg=loadImage('./img/sfondo1.png');
     backimg2=loadImage('./img/casa.png');
+    backimg3=loadImage('./img/casa2.png');
     pause=loadImage('./img/pausa.png');
     gameover=loadImage('./img/gameover.png');
     
@@ -153,9 +157,13 @@ function iniziaGioco(immaginePG, imgDxPG, imgSxPG) {
     nemico3.setupEnemy(700, 1400, imgN2dx, imgN2sx, 4);
     nemici2.push(nemico3);
 
-    nemico4 = new Player(imgN2sx, 900, terra);
-    nemico4.setupEnemy(700, 1400, imgN2dx, imgN2sx, 2.5);
-    nemici2.push(nemico4);
+    nemico4 = new Player(imgN2sx, 300, terra);
+    nemico4.setupEnemy(200, 700, imgN2dx, imgN2sx, 2.5);
+    nemici3.push(nemico4);
+
+    nemico5=new Player(imgN2dx,300,terra);
+    nemico5.setupEnemy(300,900,imgN2dx,imgN2sx,5);
+    nemici3.push(nemico5);
 
     schema = 3;
 }
@@ -220,7 +228,6 @@ function disegnaVite(){
     textAlign(LEFT);
     stroke(0);
 }
-// -------------------------------------------
 
 function draw(){
     if (schema == 1) {
@@ -393,6 +400,56 @@ function draw(){
     } else if(schema == 99){
         background(gameover);
       
+    }else if (schema ==5){
+        background(backimg3); 
+        fill(255);
+        textSize(30);
+        text("Livello 2",300,40);
+        player.discesa();
+     
+        for(let n of nemici3){
+            n.moveDXSX();
+            image(n.imgShow, n.x, n.y);
+        }
+        
+        if(!invincibile || frameCount % 8 < 4){
+            image(player.imgShow, player.x, player.y);
+        }
+        
+        for(let i = nemici3.length - 1; i >= 0; i--){
+            if(collisioneDallAlto(player, nemici3[i])){
+                player.speedY = -player.jumpHeight / 1.5;
+                nemici3.splice(i, 1);
+            }
+        }
+        
+        if(!invincibile){
+            for(let i = 0; i < nemici3.length; i++){
+                if(collisioneLaterale(player, nemici3[i])){
+                    vite--;
+                    invincibile = true;
+                    invincibileTimer = INVINCIBILE_DURATA;
+                    if(vite <= 0){
+                        schema = 99; // Game Over
+                    }
+                    break;
+                }
+            }
+        }
+        if(invincibile){
+            invincibileTimer--;
+            if(invincibileTimer <= 0){
+                invincibile = false;
+            }
+        }
+        
+        disegnaVite();
+        
+        if(player.x>=1700){
+            schema++;
+            player.x=10;
+        }
+        
     }
 
 }

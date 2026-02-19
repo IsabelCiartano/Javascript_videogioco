@@ -41,8 +41,12 @@ let pg2Dx, pg2Sx, pg2F;
 
 //piattaforme
 const piattaformeLv2 = [
-  { x: 380, y: terra - 100, w: 400, h: 20 },  // piattaforma 1, raggiungibile da terra
-  { x: 700, y: terra - 200, w: 200, h: 20 }   // piattaforma 2, raggiungibile solo dalla 1
+  { x: 400, y: terra - 100, w: 450, h: 20 },  // piattaforma 1, raggiungibile da terra
+  { x: 800, y: terra - 200, w: 250, h: 20 }   // piattaforma 2, raggiungibile solo dalla 1
+];
+const piattaformeLv2_2 = [
+  { x: 900, y: terra - 100, w: 400, h: 20 },  // piattaforma 1, raggiungibile da terra
+  { x: 1400, y: terra - 200, w: 240, h: 20 }   // piattaforma 2, raggiungibile solo dalla 1
 ];
 
 function preload(){
@@ -160,7 +164,7 @@ function iniziaGioco(immaginePG, imgDxPG, imgSxPG) {
     nemici.push(nemico2);
 
     nemico3 = new Player(imgN2dx, 900, terra);
-    nemico3.setupEnemy(700, 1400, imgN2dx, imgN2sx, 4);
+    nemico3.setupEnemy(600, 1100, imgN2dx, imgN2sx, 4);
     nemici2.push(nemico3);
 
     nemico4 = new Player(imgN2sx, 300, terra);
@@ -350,10 +354,11 @@ function draw(){
         }
         
     } else if(schema==4){//livello 2
+          background(backimg2); 
          // Disegna piattaforme livello 2 ----
     disegnaPiattaforme(piattaformeLv2);
     gestisciPiattaforme(player, piattaformeLv2);
-        background(backimg2); 
+      
         fill(255);
         textSize(30);
         text("Livello 2",300,40);
@@ -410,7 +415,11 @@ function draw(){
         background(gameover);
       
     }else if (schema ==5){
-        background(backimg3); 
+         background(backimg3); 
+          // Disegna piattaforme livello 2.1 ----
+    disegnaPiattaforme(piattaformeLv2_2);
+    gestisciPiattaforme(player, piattaformeLv2_2);
+       
         fill(255);
         textSize(30);
         text("Livello 2",300,40);

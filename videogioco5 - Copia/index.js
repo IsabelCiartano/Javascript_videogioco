@@ -8,7 +8,7 @@ let imgSx;
 let imgF;
 let ferm;
 let player;
-let schemaprec;
+let schemaprec = 1;
 let schema;
 let start;
 let terra=680;
@@ -48,6 +48,7 @@ const piattaformeLv2_2 = [
   { x: 990, y: terra - 120, w: 500, h: 20 },  // piattaforma 1, raggiungibile da terra
   { x: 1200, y: terra - 300, w: 400, h: 20 }   // piattaforma 2, raggiungibile solo dalla 1
 ];
+ 
 
 
 function preload(){
@@ -142,7 +143,20 @@ function mouseClicked() {
             iniziaGioco(pg2F, pg2Dx, pg2Sx);
         }
     }
+    if (schema == 0) {
+        // Continua
+        if (mouseX >= 660 && mouseX <= 1100 && //controllare coordinate 
+            mouseY >= 550 && mouseY <= 670) {
+            schema = schemaprec;
+        }
+        // Menu
+        if (mouseX >= 660 && mouseX <= 1100 &&
+            mouseY >= 700 && mouseY <= 850) {
+            schema = 1;
+        }
+    }
 }
+
 
 function iniziaGioco(immaginePG, imgDxPG, imgSxPG) {
     player = new Player(immaginePG, 100, terra);
@@ -408,9 +422,8 @@ function draw(){
             player.x=10;
         }
         
-    } else if (schema == 0){
-        background(pause);
-        
+    } else if (schema == 0) {
+    background(pause);   
     // schermata Game Over 
     } else if(schema == 99){
         background(gameover);

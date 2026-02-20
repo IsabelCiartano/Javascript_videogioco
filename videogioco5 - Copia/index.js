@@ -45,8 +45,8 @@ const piattaformeLv2 = [
   { x: 800, y: terra - 200, w: 250, h: 20 }   // piattaforma 2, raggiungibile solo dalla 1
 ];
 const piattaformeLv2_2 = [
-  { x: 900, y: terra - 100, w: 400, h: 20 },  // piattaforma 1, raggiungibile da terra
-  { x: 1400, y: terra - 200, w: 240, h: 20 }   // piattaforma 2, raggiungibile solo dalla 1
+  { x: 990, y: terra - 120, w: 300, h: 20 },  // piattaforma 1, raggiungibile da terra
+  { x: 1200, y: terra - 300, w: 400, h: 20 }   // piattaforma 2, raggiungibile solo dalla 1
 ];
 
 function preload(){
@@ -167,12 +167,12 @@ function iniziaGioco(immaginePG, imgDxPG, imgSxPG) {
     nemico3.setupEnemy(600, 1100, imgN2dx, imgN2sx, 4);
     nemici2.push(nemico3);
 
-    nemico4 = new Player(imgN2sx, 300, terra);
-    nemico4.setupEnemy(200, 700, imgN2dx, imgN2sx, 2.5);
+    nemico4 = new Player(imgN2sx, 600, terra);
+    nemico4.setupEnemy(600, 900, imgN2dx, imgN2sx, 2.5);
     nemici3.push(nemico4);
 
-    nemico5=new Player(imgN2dx,300,terra);
-    nemico5.setupEnemy(300,900,imgN2dx,imgN2sx,5);
+    nemico5=new Player(imgN2dx,1000,terra);
+    nemico5.setupEnemy(1000,1500,imgN2dx,imgN2sx,5);
     nemici3.push(nemico5);
 
     schema = 3;
@@ -473,9 +473,9 @@ function draw(){
 }
 //piattaforme 
 function disegnaPiattaforme(piattaforme) {
-  fill(139, 90, 43);
-  stroke(80, 50, 10);
-  strokeWeight(2);
+  fill(139, 90, 43);//imposta colore con colori rgb 
+  stroke(80, 50, 10);//imposta colore bordo 
+  strokeWeight(2);//spessore del bordo 
   for (let p of piattaforme) {
     rect(p.x, p.y, p.w, p.h, 4);
   }

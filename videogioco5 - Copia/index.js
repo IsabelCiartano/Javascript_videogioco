@@ -45,9 +45,10 @@ const piattaformeLv2 = [
   { x: 800, y: terra - 200, w: 250, h: 20 }   // piattaforma 2, raggiungibile solo dalla 1
 ];
 const piattaformeLv2_2 = [
-  { x: 990, y: terra - 120, w: 300, h: 20 },  // piattaforma 1, raggiungibile da terra
+  { x: 990, y: terra - 120, w: 500, h: 20 },  // piattaforma 1, raggiungibile da terra
   { x: 1200, y: terra - 300, w: 400, h: 20 }   // piattaforma 2, raggiungibile solo dalla 1
 ];
+
 
 function preload(){
     backimg=loadImage('./img/sfondo1.png');
@@ -416,7 +417,7 @@ function draw(){
       
     }else if (schema ==5){
          background(backimg3); 
-          // Disegna piattaforme livello 2.1 ----
+    // Disegna piattaforme livello 2.1 ----
     disegnaPiattaforme(piattaformeLv2_2);
     gestisciPiattaforme(player, piattaformeLv2_2);
        
@@ -463,6 +464,21 @@ function draw(){
         
         disegnaVite();
         
+console.log("player.y:", player.y, "terra:", terra, "player.x:", player.x);
+//fuoco 
+   if (player.y >= 440 && player.y <= 460 && player.x >= 1200) {
+fill(255, 30, 0);
+textAlign(CENTER);
+textSize(40);
+text("YOU ARE ON FIRE!!!", width/2, height/2);
+    if (!invincibile) {
+        vite--;
+        invincibile = true;
+        invincibileTimer = INVINCIBILE_DURATA;
+        if (vite <= 0){
+       schema = 99; 
+        }
+    }
         if(player.x>=1700){
             schema++;
             player.x=10;
@@ -470,12 +486,14 @@ function draw(){
         
     }
 
-}
+}}
+
 //piattaforme 
 function disegnaPiattaforme(piattaforme) {
-  fill(139, 90, 43);//imposta colore con colori rgb 
-  stroke(80, 50, 10);//imposta colore bordo 
-  strokeWeight(2);//spessore del bordo 
+  //fill(139, 90, 43);imposta colore con colori rgb 
+  noFill();
+  stroke(0);//imposta colore bordo 
+  strokeWeight(4);//spessore del bordo 
   for (let p of piattaforme) {
     rect(p.x, p.y, p.w, p.h, 4);
   }

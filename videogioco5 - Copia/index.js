@@ -132,18 +132,18 @@ function keyPressed(){
 function mouseClicked() {
      if (schema == 0) {
         // Continua
-        if (mouseX >= 660 && mouseX <= 1100 && //controllare coordinate 
-            mouseY >= 550 && mouseY <= 670){
+        if (mouseX >= 640 && mouseX <= 1100 && //controllare coordinate 
+            mouseY >= 520 && mouseY <= 680){
             schema = schemaprec;
         }
         // Menu
-        if (mouseX >= 660 && mouseX <= 1100 &&
-            mouseY >= 700 && mouseY <= 850){
+        if (mouseX >= 640 && mouseX <= 1100 &&
+            mouseY >= 700 && mouseY <= 870){
             schema = 1;
         }
-
- 
-   } else if (schema == 2) {
+    }else if(schema==1){
+        schema++;
+    }else if (schema == 2) {
     if (mouseX >= btnPersonaggio1.x && mouseX <= btnPersonaggio1.x + btnPersonaggio1.w &&
         mouseY >= btnPersonaggio1.y && mouseY <= btnPersonaggio1.y + btnPersonaggio1.h) {
         personaggioScelto = 1;
@@ -439,52 +439,52 @@ function draw(){
     // schermata Game Over 
     } else if(schema == 99){
         background(gameover);
+
+    //schermata regole
     } else if (schema == 3) {
     background("pink");
-    
-    // === TITOLO ===
-    fill(180, 0, 100);
+    //  TITOLO 
+    fill(255);
     stroke(255, 100, 180);
     strokeWeight(5);
-    textSize(64);
+    textSize(70);
     textAlign(CENTER);
-    text("★ RULES ★", width/2, height/2 - 280);
+    text(" RULES ", width/2, height/2 - 280);
     
-    // === BOX SFONDO ===
+    // BOX SFONDO 
     fill(255, 255, 255, 200);
     stroke(255, 100, 180);
-    strokeWeight(3);
+    strokeWeight(4);
     rect(width/2 - 400, height/2 - 230, 800, 370, 20);
     
-    // === TESTI MODALITÀ ===
+    // TESTI MODALITÀ
     noStroke();
-    
     // Modalità 1
     fill(200, 0, 100);
-    textSize(22);
+    textSize(25);
     textAlign(LEFT);
     text(" Livello 1 - Foresta", width/2 - 360, height/2 - 160);
     fill(60);
-    textSize(17);
+    textSize(20);
     text("Affronta i nemici nel mondo aperto.\nSalta sulla loro testa per eliminarli!", width/2 - 360, height/2 - 130);
     
     // Modalità 2
     fill(200, 0, 100);
-    textSize(22);
+    textSize(25);
     text("Livello 2 - Casa", width/2 - 360, height/2 - 40);
     fill(60);
-    textSize(17);
+    textSize(20);
     text("Salta tra le piattaforme e schiva i lupi.\nRaggiungere la fine del livello per avanzare!", width/2 - 360, height/2 - 10);
     
     // Controlli
     fill(200, 0, 100);
-    textSize(22);
+    textSize(25);
     text("Controlli", width/2 - 360, height/2 + 80);
     fill(60);
-    textSize(17);
+    textSize(20);
     text("W = Salta   |   A = Sinistra   |   D = Destra   |   P / ESC = Pausa", width/2 - 360, height/2 + 110);
     
-    // === PULSANTE INIZIA ===
+    //  PULSANTE INIZIA 
     let bx = width/2 - 180;
     let by = height/2 + 160;
     let bw = 360;
@@ -506,7 +506,7 @@ function draw(){
     noStroke();
     textSize(28);
     textAlign(CENTER);
-    text("▶  INIZIA GIOCO", width/2, by + 43);
+    text("INIZIA GIOCO --->", width/2, by + 43);
     
     // Salva le coordinate del pulsante per mouseClicked
     btnRulesX = bx;
@@ -514,10 +514,8 @@ function draw(){
     btnRulesW = bw;
     btnRulesH = bh;
 
-
-      
     }else if (schema ==6){
-         background(backimg3); 
+     background(backimg3); 
     // Disegna piattaforme livello 2.1 ----
     disegnaPiattaforme(piattaformeLv2_2);
     gestisciPiattaforme(player, piattaformeLv2_2);

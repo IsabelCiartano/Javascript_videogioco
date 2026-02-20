@@ -146,12 +146,12 @@ function mouseClicked() {
     if (schema == 0) {
         // Continua
         if (mouseX >= 660 && mouseX <= 1100 && //controllare coordinate 
-            mouseY >= 550 && mouseY <= 670) {
+            mouseY >= 550 && mouseY <= 670){
             schema = schemaprec;
         }
         // Menu
         if (mouseX >= 660 && mouseX <= 1100 &&
-            mouseY >= 700 && mouseY <= 850) {
+            mouseY >= 700 && mouseY <= 850){
             schema = 1;
         }
     }

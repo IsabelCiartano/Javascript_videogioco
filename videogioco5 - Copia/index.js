@@ -48,6 +48,8 @@ const piattaformeLv2_2 = [
   { x: 990, y: terra - 120, w: 500, h: 20 },  // piattaforma 1, raggiungibile da terra
   { x: 1200, y: terra - 300, w: 400, h: 20 }   // piattaforma 2, raggiungibile solo dalla 1
 ];
+//pulsanti regole 
+let btnRulesX, btnRulesY, btnRulesW, btnRulesH;
  
 
 
@@ -91,59 +93,44 @@ function setup(){
     schema = 1;
 }
 
+
 function keyPressed(){
-    if(key == "w"){
-        player.jump();
-    }
-    if(key=="a"){
-        if(personaggioScelto == 1) {
-            player.imgShow = pg1Sx;
-        } else {
-            player.imgShow = pg2Sx;
-        }
-        player.moveSx();
-    }
-    if(key=="d"){
-        if(personaggioScelto == 1) {
-            player.imgShow = pg1Dx;
-        } else {
-            player.imgShow = pg2Dx;
-        }
-        player.moveDx();
-    }
+    // tasti globali sempre attivi
     if(key=="p" || key=="Escape"){
-        schemaprec=schema;
-        schema=0;
+        schemaprec = schema;
+        schema = 0;
     }
     if(key == "q"){
-        schema=schemaprec;
+        schema = schemaprec;
     }
     if(schema == 1 && (key == "s" || key == " ")){
-        schema=schema+1;
+        schema = schema + 1;
     }
     if(key == "r" || key == "R"){
-    if(schema == 99){
-        nemici.length = 0;
-        nemici2.length = 0;
-        schema = 1;
+        if(schema == 99){
+            nemici.length = 0;
+            nemici2.length = 0;
+            nemici3.length = 0;
+            schema = 1;
+        }
     }
-}
+
+    // movimento solo se il gioco è attivo e player esiste
+    if(schema < 4 || !player) return;
+
+    if(key == "w") player.jump();
+    if(key == "a"){
+        player.imgShow = (personaggioScelto == 1) ? pg1Sx : pg2Sx;
+        player.moveSx();
+    }
+    if(key == "d"){
+        player.imgShow = (personaggioScelto == 1) ? pg1Dx : pg2Dx;
+        player.moveDx();
+    }
 }
 
 function mouseClicked() {
-    if(schema == 2) {
-        if(mouseX >= btnPersonaggio1.x && mouseX <= btnPersonaggio1.x + btnPersonaggio1.w &&
-           mouseY >= btnPersonaggio1.y && mouseY <= btnPersonaggio1.y + btnPersonaggio1.h) {
-            personaggioScelto = 1;
-            iniziaGioco(pg1F, pg1Dx, pg1Sx);
-        }
-        if(mouseX >= btnPersonaggio2.x && mouseX <= btnPersonaggio2.x + btnPersonaggio2.w &&
-           mouseY >= btnPersonaggio2.y && mouseY <= btnPersonaggio2.y + btnPersonaggio2.h) {
-            personaggioScelto = 2;
-            iniziaGioco(pg2F, pg2Dx, pg2Sx);
-        }
-    }
-    if (schema == 0) {
+     if (schema == 0) {
         // Continua
         if (mouseX >= 660 && mouseX <= 1100 && //controllare coordinate 
             mouseY >= 550 && mouseY <= 670){
@@ -154,22 +141,48 @@ function mouseClicked() {
             mouseY >= 700 && mouseY <= 850){
             schema = 1;
         }
+
+ 
+   } else if (schema == 2) {
+    if (mouseX >= btnPersonaggio1.x && mouseX <= btnPersonaggio1.x + btnPersonaggio1.w &&
+        mouseY >= btnPersonaggio1.y && mouseY <= btnPersonaggio1.y + btnPersonaggio1.h) {
+        personaggioScelto = 1;
+        scegliPersonaggio(pg1F, pg1Dx, pg1Sx); // → va a schema 3
+    }
+    if (mouseX >= btnPersonaggio2.x && mouseX <= btnPersonaggio2.x + btnPersonaggio2.w &&
+        mouseY >= btnPersonaggio2.y && mouseY <= btnPersonaggio2.y + btnPersonaggio2.h) {
+        personaggioScelto = 2;
+        scegliPersonaggio(pg2F, pg2Dx, pg2Sx); // → va a schema 3
+    }
+} else if (schema == 3) {
+    if (mouseX >= btnRulesX && mouseX <= btnRulesX + btnRulesW &&
+        mouseY >= btnRulesY && mouseY <= btnRulesY + btnRulesH) {
+        iniziaGioco(); // → va a schema 4
     }
 }
+}
 
-
-function iniziaGioco(immaginePG, imgDxPG, imgSxPG) {
-    player = new Player(immaginePG, 100, terra);
+// Nuova funzione: solo scelta personaggio
+function scegliPersonaggio(immaginePG, imgDxPG, imgSxPG) {
     imgF = immaginePG;
     imgDx = imgDxPG;
     imgSx = imgSxPG;
+    schema = 3; // mostra le rules
+}
+
+function iniziaGioco() {
+    // usa imgF/imgDx/imgSx salvati da scegliPersonaggio
+    player = new Player(imgF, 100, terra);
     
-    //  reset vite all'inizio ----
     vite = 3;
     invincibile = false;
     invincibileTimer = 0;
     
-    
+    // svuota gli array prima di riempirli!
+    nemici.length = 0;
+    nemici2.length = 0;
+    nemici3.length = 0;
+
     nemico = new Player(imgNdx, 900, terra-100);
     nemico.setupEnemy(700, 1400, imgNdx, imgNsx, 4);
     nemici.push(nemico);
@@ -186,13 +199,12 @@ function iniziaGioco(immaginePG, imgDxPG, imgSxPG) {
     nemico4.setupEnemy(600, 900, imgN2dx, imgN2sx, 2.5);
     nemici3.push(nemico4);
 
-    nemico5=new Player(imgN2dx,1000,terra);
-    nemico5.setupEnemy(1000,1500,imgN2dx,imgN2sx,5);
+    nemico5 = new Player(imgN2dx, 1000, terra);
+    nemico5.setupEnemy(1000, 1500, imgN2dx, imgN2sx, 5);
     nemici3.push(nemico5);
 
-    schema = 3;
+    schema = 4;
 }
-
 function collisioneDallAlto(player, nemico){
     let pw = player.imgShow.width;
     let ph = player.imgShow.height;
@@ -310,7 +322,7 @@ function draw(){
             cursor(ARROW);
         }
         
-    } else if (schema==3) {
+    } else if (schema==4) {
         background(backimg); 
         fill(255);
         textSize(30);
@@ -368,7 +380,7 @@ function draw(){
             player.x=10;
         }
         
-    } else if(schema==4){//livello 2
+    } else if(schema==5){//livello 2
           background(backimg2); 
          // Disegna piattaforme livello 2 ----
     disegnaPiattaforme(piattaformeLv2);
@@ -427,8 +439,84 @@ function draw(){
     // schermata Game Over 
     } else if(schema == 99){
         background(gameover);
+    } else if (schema == 3) {
+    background("pink");
+    
+    // === TITOLO ===
+    fill(180, 0, 100);
+    stroke(255, 100, 180);
+    strokeWeight(5);
+    textSize(64);
+    textAlign(CENTER);
+    text("★ RULES ★", width/2, height/2 - 280);
+    
+    // === BOX SFONDO ===
+    fill(255, 255, 255, 200);
+    stroke(255, 100, 180);
+    strokeWeight(3);
+    rect(width/2 - 400, height/2 - 230, 800, 370, 20);
+    
+    // === TESTI MODALITÀ ===
+    noStroke();
+    
+    // Modalità 1
+    fill(200, 0, 100);
+    textSize(22);
+    textAlign(LEFT);
+    text(" Livello 1 - Foresta", width/2 - 360, height/2 - 160);
+    fill(60);
+    textSize(17);
+    text("Affronta i nemici nel mondo aperto.\nSalta sulla loro testa per eliminarli!", width/2 - 360, height/2 - 130);
+    
+    // Modalità 2
+    fill(200, 0, 100);
+    textSize(22);
+    text("Livello 2 - Casa", width/2 - 360, height/2 - 40);
+    fill(60);
+    textSize(17);
+    text("Salta tra le piattaforme e schiva i lupi.\nRaggiungere la fine del livello per avanzare!", width/2 - 360, height/2 - 10);
+    
+    // Controlli
+    fill(200, 0, 100);
+    textSize(22);
+    text("Controlli", width/2 - 360, height/2 + 80);
+    fill(60);
+    textSize(17);
+    text("W = Salta   |   A = Sinistra   |   D = Destra   |   P / ESC = Pausa", width/2 - 360, height/2 + 110);
+    
+    // === PULSANTE INIZIA ===
+    let bx = width/2 - 180;
+    let by = height/2 + 160;
+    let bw = 360;
+    let bh = 65;
+    
+    if (mouseX >= bx && mouseX <= bx + bw &&
+        mouseY >= by && mouseY <= by + bh) {
+        fill(220, 0, 120);
+        cursor(HAND);
+    } else {
+        fill(255, 80, 160);
+        cursor(ARROW);
+    }
+    stroke(150, 0, 80);
+    strokeWeight(4);
+    rect(bx, by, bw, bh, 15);//rettangolo 
+    
+    fill(255);
+    noStroke();
+    textSize(28);
+    textAlign(CENTER);
+    text("▶  INIZIA GIOCO", width/2, by + 43);
+    
+    // Salva le coordinate del pulsante per mouseClicked
+    btnRulesX = bx;
+    btnRulesY = by;
+    btnRulesW = bw;
+    btnRulesH = bh;
+
+
       
-    }else if (schema ==5){
+    }else if (schema ==6){
          background(backimg3); 
     // Disegna piattaforme livello 2.1 ----
     disegnaPiattaforme(piattaformeLv2_2);

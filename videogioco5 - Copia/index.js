@@ -20,6 +20,7 @@ let nemico5;
 const nemici=[];
 const nemici2=[];
 const nemici3=[];
+const nemici4=[];
 
 //  Vite e invincibilità ----
 let vite = 3;
@@ -48,6 +49,11 @@ const piattaformeLv2_2 = [
   { x: 990, y: terra - 120, w: 500, h: 20 },  // piattaforma 1, raggiungibile da terra
   { x: 1200, y: terra - 300, w: 400, h: 20 }   // piattaforma 2, raggiungibile solo dalla 1
 ];
+const piattaformeLv3=[
+    {x:200,y:terra-120,w:300,h:20},
+    {x:480,y:terra-300,w:400,h:20},
+    {x:1200,y:terra-120,w:200,h:20}
+]
 //pulsanti regole 
 let btnRulesX, btnRulesY, btnRulesW, btnRulesH;
  
@@ -162,7 +168,7 @@ function mouseClicked() {
 }
 }
 
-// Nuova funzione: solo scelta personaggio
+//  solo scelta personaggio
 function scegliPersonaggio(immaginePG, imgDxPG, imgSxPG) {
     imgF = immaginePG;
     imgDx = imgDxPG;
@@ -182,6 +188,7 @@ function iniziaGioco() {
     nemici.length = 0;
     nemici2.length = 0;
     nemici3.length = 0;
+    nemici4.length=0;
 
     nemico = new Player(imgNdx, 900, terra-100);
     nemico.setupEnemy(700, 1400, imgNdx, imgNsx, 4);
@@ -578,12 +585,63 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
        schema = 99; 
         }
     }
+ } if(player.x>=1700){
+            schema++;
+            player.x=10;
+        }
+}else if (schema==7) {
+        background(backimg); 
+    disegnaPiattaforme(piattaformeLv3);
+    gestisciPiattaforme(player, piattaformeLv3);
+        fill(255);
+        textSize(30);
+        text("Livello 3",300,50);
+        player.discesa();
+     
+        for(let n of nemici4){
+            n.moveDXSX();
+            image(n.imgShow, n.x, n.y);
+        }
+        // effetto lampeggio quando invincibile ----
+        if(!invincibile || frameCount % 8 < 4){
+            image(player.imgShow, player.x, player.y);
+        }
+        for(let i = nemici4.length - 1; i >= 0; i--){
+            if(collisioneDallAlto(player, nemici4[i])){
+                player.speedY = -player.jumpHeight / 1.5;
+                nemici4.splice(i, 1);
+            }
+        }
+        if(!invincibile){
+            for(let i = 0; i < nemici4.length; i++){
+                if(collisioneLaterale(player, nemici4[i])){
+                    vite--;
+                    invincibile = true;
+                    invincibileTimer = INVINCIBILE_DURATA;
+                    if(vite <= 0){
+                        schema = 99; // Game Over
+                    }
+                    break; // Un colpo alla volta
+                }
+            }
+        }
+        if(invincibile){
+            invincibileTimer--;
+            if(invincibileTimer <= 0){
+                invincibile = false;
+            }
+        }
+        disegnaVite();
         if(player.x>=1700){
             schema++;
             player.x=10;
         }
-        
-    }
+}else if(schema ==8){
+    background("pink");
+    fill(255);
+textAlign(CENTER);
+textSize(60);
+text("YOU WON!!!", width/2, height/2);
 
 }}
 

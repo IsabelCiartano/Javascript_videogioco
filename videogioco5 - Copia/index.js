@@ -56,6 +56,10 @@ const piattaformeLv3=[
 ]
 //pulsanti regole 
 let btnRulesX, btnRulesY, btnRulesW, btnRulesH;
+//monete 
+let punteggio = 0;
+let monete = [];
+let moneta 
  
 
 
@@ -80,6 +84,7 @@ function preload(){
     imgNsx=loadImage('./img/nemicoSX.png');
     imgN2dx=loadImage('./img/lupodx.png');
     imgN2sx=loadImage('./img/luposx.png');
+    moneta=loadImage('./img/moneta.png');
     
     personaggio1Img = pg1F;
     personaggio2Img = pg2F;
@@ -97,6 +102,53 @@ function setup(){
     
     ferm = 0;
     schema = 1;
+}
+//funzione crea monete 
+function creaMonete() {
+    monete = [];
+    // posizione monete nei vari livelli 
+    let posizioniMonete = [
+        {x: 300, y: terra - 50},
+        {x: 600, y: terra - 50},
+        {x: 900, y: terra - 50},
+        {x: 1200, y: terra - 50},
+        {x: 1500, y: terra - 50},
+        {x: 450, y: terra - 150},  // sopra piattaforma
+        {x: 820, y: terra - 250},
+    ];
+    for (let pos of posizioniMonete) {
+        monete.push({ x: pos.x, y: pos.y, w: 25, h: 25, presa: false });
+    }
+}
+//funzione per disegnare e raccogliere le monete 
+function gestisciMonete() {
+    for (let m of monete) {
+        if (m.presa) continue;
+        
+        // Disegna moneta
+       image(moneta,m.x,m.y);
+        
+        // Collisione con player
+        let pw = player.imgShow.width;
+        let ph = player.imgShow.height;
+        if (player.x < m.x + m.w/2 &&
+            player.x + pw > m.x - m.w/2 &&
+            player.y < m.y + m.h/2 &&
+            player.y + ph > m.y - m.h/2) {
+            m.presa = true;
+            punteggio += 10;
+        }
+    }
+}
+
+//disegna il punteggio 
+function disegnaPunteggio() {
+    fill(255, 215, 0);
+    stroke(150, 100, 0);
+    strokeWeight(2);
+    textSize(28);
+    textAlign(RIGHT);
+    text("punteggio " + punteggio, width - 60, 55);
 }
 
 
@@ -179,6 +231,9 @@ function scegliPersonaggio(immaginePG, imgDxPG, imgSxPG) {
 function iniziaGioco() {
     // usa imgF/imgDx/imgSx salvati da scegliPersonaggio
     player = new Player(imgF, 100, terra);
+    //monete 
+    punteggio = 0;
+creaMonete();
     
     vite = 3;
     invincibile = false;
@@ -381,6 +436,9 @@ function draw(){
         
         // disegna i cuori ----
         disegnaVite();
+        //monete 
+        gestisciMonete();
+        disegnaPunteggio();
         
         if(player.x>=1700){
             schema++;
@@ -435,6 +493,8 @@ function draw(){
         }
         
         disegnaVite();
+        gestisciMonete();
+        disegnaPunteggio();
         
         if(player.x>=1700){
             schema++;
@@ -448,9 +508,10 @@ function draw(){
         background(gameover);
 
     //schermata regole
-    } else if (schema == 3) {
+} else if (schema == 3) {
     background("pink");
-    //  TITOLO 
+    
+    // TITOLO 
     fill(255);
     stroke(255, 100, 180);
     strokeWeight(5);
@@ -458,42 +519,50 @@ function draw(){
     textAlign(CENTER);
     text(" RULES ", width/2, height/2 - 280);
     
-    // BOX SFONDO 
+    // BOX SFONDO — allargato per contenere 3 livelli
     fill(255, 255, 255, 200);
     stroke(255, 100, 180);
     strokeWeight(4);
-    rect(width/2 - 400, height/2 - 230, 800, 370, 20);
+    rect(width/2 - 400, height/2 - 230, 800, 460, 20);
     
-    // TESTI MODALITÀ
     noStroke();
-    // Modalità 1
-    fill(200, 0, 100);
-    textSize(25);
     textAlign(LEFT);
-    text(" Livello 1 - Foresta", width/2 - 360, height/2 - 160);
-    fill(60);
-    textSize(20);
-    text("Affronta i nemici nel mondo aperto.\nSalta sulla loro testa per eliminarli!", width/2 - 360, height/2 - 130);
-    
-    // Modalità 2
+
+    // Livello 1
     fill(200, 0, 100);
     textSize(25);
-    text("Livello 2 - Casa", width/2 - 360, height/2 - 40);
+    text("Livello 1 - Foresta", width/2 - 360, height/2 - 170);
     fill(60);
-    textSize(20);
-    text("Salta tra le piattaforme e schiva i lupi.\nRaggiungere la fine del livello per avanzare!", width/2 - 360, height/2 - 10);
+    textSize(18);
+    text("Affronta i nemici nel mondo aperto.\nSalta sulla loro testa per eliminarli!", width/2 - 360, height/2 - 145);
     
+    // Livello 2
+    fill(200, 0, 100);
+    textSize(25);
+    text("Livello 2 - Casa", width/2 - 360, height/2 - 60);
+    fill(60);
+    textSize(18);
+    text("Salta tra le piattaforme e schiva i lupi.\nRaggiungere la fine del livello per avanzare!", width/2 - 360, height/2 - 35);
+
+    // Livello 3
+    fill(200, 0, 100);
+    textSize(25);
+    text("Livello 3 - Cuccia", width/2 - 360, height/2 + 50);
+    fill(60);
+    textSize(18);
+    text("Salta tra le piattaforme e combatti i topi.\nRaggiungere la fine del livello per finire il gioco!", width/2 - 360, height/2 + 75);
+
     // Controlli
     fill(200, 0, 100);
     textSize(25);
-    text("Controlli", width/2 - 360, height/2 + 80);
+    text("Controlli", width/2 - 360, height/2 + 160);
     fill(60);
-    textSize(20);
-    text("W = Salta   |   A = Sinistra   |   D = Destra   |   P / ESC = Pausa", width/2 - 360, height/2 + 110);
+    textSize(18);
+    text("W = Salta   |   A = Sinistra   |   D = Destra   |   P / ESC = Pausa", width/2 - 360, height/2 + 185);
     
-    //  PULSANTE INIZIA 
+    // PULSANTE INIZIA 
     let bx = width/2 - 180;
-    let by = height/2 + 160;
+    let by = height/2 + 240;
     let bw = 360;
     let bh = 65;
     
@@ -507,7 +576,7 @@ function draw(){
     }
     stroke(150, 0, 80);
     strokeWeight(4);
-    rect(bx, by, bw, bh, 15);//rettangolo 
+    rect(bx, by, bw, bh, 15);
     
     fill(255);
     noStroke();
@@ -515,11 +584,11 @@ function draw(){
     textAlign(CENTER);
     text("INIZIA GIOCO --->", width/2, by + 43);
     
-    // Salva le coordinate del pulsante per mouseClicked
     btnRulesX = bx;
     btnRulesY = by;
     btnRulesW = bw;
     btnRulesH = bh;
+    
 
     }else if (schema ==6){
      background(backimg3); 
@@ -569,6 +638,8 @@ function draw(){
         }
         
         disegnaVite();
+        gestisciMonete();
+        disegnaPunteggio();
         
 console.log("player.y:", player.y, "terra:", terra, "player.x:", player.x);
 //fuoco 
@@ -632,6 +703,8 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
             }
         }
         disegnaVite();
+        gestisciMonete();
+        disegnaPunteggio();
         if(player.x>=1700){
             schema++;
             player.x=10;

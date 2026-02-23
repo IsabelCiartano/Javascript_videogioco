@@ -17,10 +17,15 @@ let nemico2;
 let nemico3;
 let nemico4;
 let nemico5;
+let nemico6;
+let nemico7;
+let nemico8;
+let nemico9;
 const nemici=[];
 const nemici2=[];
 const nemici3=[];
 const nemici4=[];
+let nemici5=[];
 
 //  Vite e invincibilità ----
 let vite = 3;
@@ -294,6 +299,7 @@ function iniziaGioco() {
     nemici2.length = 0;
     nemici3.length = 0;
     nemici4.length=0;
+    nemici5.length=0;
 
     nemico = new Player(imgNdx, 900, terra-100);
     nemico.setupEnemy(700, 1400, imgNdx, imgNsx, 4);
@@ -314,6 +320,23 @@ function iniziaGioco() {
     nemico5 = new Player(imgN2dx, 1000, terra);
     nemico5.setupEnemy(1000, 1500, imgN2dx, imgN2sx, 5);
     nemici3.push(nemico5);
+    
+    nemico6 = new Player(imgN2dx, 1000, terra);
+    nemico6.setupEnemy(1000, 1500, imgN2dx, imgN2sx, 5);
+    nemici4.push(nemico6);
+
+    nemico7 = new Player(imgN2dx, 1000, terra);
+    nemico7.setupEnemy(1000, 1500, imgN2dx, imgN2sx, 5);
+    nemici5.push(nemico7);
+
+    nemico8 = new Player(imgN2dx, 1000, terra);
+    nemico8.setupEnemy(1000, 1500, imgN2dx, imgN2sx, 5);
+    nemici5.push(nemico8);
+
+    nemico9 = new Player(imgN2dx, 910, terra-350);
+    nemico9.setupEnemy(910, 1000, imgN2dx, imgN2sx, 5);
+    nemici5.push(nemico5);
+    
 
     schema = 4;
 }
@@ -760,7 +783,7 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
         text("Livello 3",300,50);
         player.discesa();
      
-        for(let n of nemici4){
+        for(let n of nemici5){
             n.moveDXSX();
             image(n.imgShow, n.x, n.y);
         }
@@ -769,14 +792,14 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
             image(player.imgShow, player.x, player.y);
         }
         for(let i = nemici4.length - 1; i >= 0; i--){
-            if(collisioneDallAlto(player, nemici4[i])){
+            if(collisioneDallAlto(player, nemici5[i])){
                 player.speedY = -player.jumpHeight / 1.5;
-                nemici4.splice(i, 1);
+                nemici5.splice(i, 1);
             }
         }
         if(!invincibile){
-            for(let i = 0; i < nemici4.length; i++){
-                if(collisioneLaterale(player, nemici4[i])){
+            for(let i = 0; i < nemici5.length; i++){
+                if(collisioneLaterale(player, nemici5[i])){
                     vite--;
                     invincibile = true;
                     invincibileTimer = INVINCIBILE_DURATA;
@@ -804,9 +827,9 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
     background("pink");
     fill(255);
 textAlign(CENTER);
-textSize(60);
+textSize(70);
 text("YOU WON!!!", width/2, height/2);
-text("PUNTEGGIO :"+punteggio,width/2,height/2+60);
+text("PUNTEGGIO :"+punteggio,width/2,height/2+90);
 
 }}
 

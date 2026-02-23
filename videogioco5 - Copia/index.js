@@ -61,8 +61,6 @@ let punteggio = 0;
 let monete = [];
 let moneta 
  
-
-
 function preload(){
     backimg=loadImage('./img/sfondo1.png');
     backimg2=loadImage('./img/casa.png');
@@ -110,11 +108,46 @@ function creaMonete() {
     let posizioniMonete = [
         {x: 300, y: terra - 50},
         {x: 600, y: terra - 50},
-        {x: 900, y: terra - 50},
         {x: 1200, y: terra - 50},
         {x: 1500, y: terra - 50},
-        {x: 450, y: terra - 150},  // sopra piattaforma
+    ];
+    for (let pos of posizioniMonete) {
+        monete.push({ x: pos.x, y: pos.y, w: 25, h: 25, presa: false });
+    }
+}
+function creaMoneteLv2() {
+    monete = [];
+    let posizioniMonete = [
+        {x: 300, y: terra - 50},
+        {x: 1200, y: terra - 50},
+        {x: 450, y: terra - 150},  
         {x: 820, y: terra - 250},
+    ];
+    for (let pos of posizioniMonete) {
+        monete.push({ x: pos.x, y: pos.y, w: 25, h: 25, presa: false });
+    }
+}
+function creaMoneteLv2_2() {
+    monete = [];
+    let posizioniMonete = [
+        {x: 300, y: terra - 50},
+        {x:500,y:terra-50},
+        {x: 890, y: terra - 50},
+        {x: 1000, y: terra - 150}, 
+        {x: 1500, y: terra - 350},
+    ];
+    for (let pos of posizioniMonete) {
+        monete.push({ x: pos.x, y: pos.y, w: 25, h: 25, presa: false });
+    }
+}
+function creaMoneteLv3() {
+    monete = [];
+    let posizioniMonete = [
+        {x: 300, y: terra - 50},
+        {x: 400, y: terra - 200},
+        {x: 800, y: terra - 400},
+        {x: 1000, y: terra - 50}, 
+        {x: 1300, y: terra - 200},
     ];
     for (let pos of posizioniMonete) {
         monete.push({ x: pos.x, y: pos.y, w: 25, h: 25, presa: false });
@@ -233,7 +266,8 @@ function iniziaGioco() {
     player = new Player(imgF, 100, terra);
     //monete 
     punteggio = 0;
-creaMonete();
+    creaMonete();
+  
     
     vite = 3;
     invincibile = false;
@@ -334,7 +368,6 @@ function draw(){
         
     } else if(schema == 2) {
         background("pink");
-        
         fill(0);
         stroke(255);
         strokeWeight(4);
@@ -342,7 +375,6 @@ function draw(){
         textAlign(CENTER);
         text("SCEGLI IL TUO PERSONAGGIO", width/2, height/2 - 200);
         strokeWeight(1);
-        
         if(mouseX >= btnPersonaggio1.x && mouseX <= btnPersonaggio1.x + btnPersonaggio1.w &&
            mouseY >= btnPersonaggio1.y && mouseY <= btnPersonaggio1.y + btnPersonaggio1.h) {
             fill(100, 200, 255);
@@ -359,7 +391,6 @@ function draw(){
         strokeWeight(3);
         textSize(28);
         text("GATTO 1", btnPersonaggio1.x + btnPersonaggio1.w/2, btnPersonaggio1.y + 400);
-        
         if(mouseX >= btnPersonaggio2.x && mouseX <= btnPersonaggio2.x + btnPersonaggio2.w &&
            mouseY >= btnPersonaggio2.y && mouseY <= btnPersonaggio2.y + btnPersonaggio2.h) {
             fill(255, 200, 100);
@@ -376,7 +407,6 @@ function draw(){
         strokeWeight(3);
         textSize(28);
         text("GATTO 2", btnPersonaggio2.x + btnPersonaggio2.w/2, btnPersonaggio2.y + 400);
-        
         if(!(mouseX >= btnPersonaggio1.x && mouseX <= btnPersonaggio1.x + btnPersonaggio1.w &&
              mouseY >= btnPersonaggio1.y && mouseY <= btnPersonaggio1.y + btnPersonaggio1.h) &&
            !(mouseX >= btnPersonaggio2.x && mouseX <= btnPersonaggio2.x + btnPersonaggio2.w &&
@@ -441,15 +471,16 @@ function draw(){
         disegnaPunteggio();
         
         if(player.x>=1700){
+            creaMoneteLv2();
             schema++;
             player.x=10;
         }
         
     } else if(schema==5){//livello 2
-          background(backimg2); 
-         // Disegna piattaforme livello 2 ----
-    disegnaPiattaforme(piattaformeLv2);
-    gestisciPiattaforme(player, piattaformeLv2);
+        background(backimg2); 
+         // Disegna piattaforme livello 2 
+        disegnaPiattaforme(piattaformeLv2);
+        gestisciPiattaforme(player, piattaformeLv2);
       
         fill(255);
         textSize(30);
@@ -497,6 +528,7 @@ function draw(){
         disegnaPunteggio();
         
         if(player.x>=1700){
+            creaMoneteLv2_2();
             schema++;
             player.x=10;
         }
@@ -510,7 +542,6 @@ function draw(){
     //schermata regole
 } else if (schema == 3) {
     background("pink");
-    
     // TITOLO 
     fill(255);
     stroke(255, 100, 180);
@@ -518,16 +549,13 @@ function draw(){
     textSize(70);
     textAlign(CENTER);
     text(" RULES ", width/2, height/2 - 280);
-    
     // BOX SFONDO — allargato per contenere 3 livelli
     fill(255, 255, 255, 200);
     stroke(255, 100, 180);
     strokeWeight(4);
     rect(width/2 - 400, height/2 - 230, 800, 460, 20);
-    
     noStroke();
     textAlign(LEFT);
-
     // Livello 1
     fill(200, 0, 100);
     textSize(25);
@@ -535,7 +563,6 @@ function draw(){
     fill(60);
     textSize(18);
     text("Affronta i nemici nel mondo aperto.\nSalta sulla loro testa per eliminarli!", width/2 - 360, height/2 - 145);
-    
     // Livello 2
     fill(200, 0, 100);
     textSize(25);
@@ -543,7 +570,6 @@ function draw(){
     fill(60);
     textSize(18);
     text("Salta tra le piattaforme e schiva i lupi.\nRaggiungere la fine del livello per avanzare!", width/2 - 360, height/2 - 35);
-
     // Livello 3
     fill(200, 0, 100);
     textSize(25);
@@ -551,7 +577,6 @@ function draw(){
     fill(60);
     textSize(18);
     text("Salta tra le piattaforme e combatti i topi.\nRaggiungere la fine del livello per finire il gioco!", width/2 - 360, height/2 + 75);
-
     // Controlli
     fill(200, 0, 100);
     textSize(25);
@@ -590,8 +615,8 @@ function draw(){
     btnRulesH = bh;
     
 
-    }else if (schema ==6){
-     background(backimg3); 
+}else if (schema ==6){
+    background(backimg3); 
     // Disegna piattaforme livello 2.1 ----
     disegnaPiattaforme(piattaformeLv2_2);
     gestisciPiattaforme(player, piattaformeLv2_2);
@@ -643,7 +668,7 @@ function draw(){
         
 console.log("player.y:", player.y, "terra:", terra, "player.x:", player.x);
 //fuoco 
-   if (player.y >= 440 && player.y <= 460 && player.x >= 1200) {
+if (player.y >= 440 && player.y <= 460 && player.x >= 1200) {
 fill(255, 30, 0);
 textAlign(CENTER);
 textSize(40);
@@ -657,11 +682,12 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
         }
     }
  } if(player.x>=1700){
+            creaMoneteLv3();
             schema++;
             player.x=10;
         }
 }else if (schema==7) {
-        background(backimg); 
+    background(backimg); 
     disegnaPiattaforme(piattaformeLv3);
     gestisciPiattaforme(player, piattaformeLv3);
         fill(255);

@@ -54,6 +54,11 @@ const piattaformeLv3=[
     {x:480,y:terra-300,w:400,h:20},
     {x:1200,y:terra-120,w:200,h:20}
 ]
+const piattaformeLv3_2=[
+    {x:600,y:terra-120,w:300,h:20},
+    {x:900,y:terra-300,w:300,h:20},
+    {x:1200,y:terra-120,w:200,h:20}
+]
 //pulsanti regole 
 let btnRulesX, btnRulesY, btnRulesW, btnRulesH;
 //monete 
@@ -148,6 +153,17 @@ function creaMoneteLv3() {
         {x: 800, y: terra - 400},
         {x: 1000, y: terra - 50}, 
         {x: 1300, y: terra - 200},
+    ];
+    for (let pos of posizioniMonete) {
+        monete.push({ x: pos.x, y: pos.y, w: 25, h: 25, presa: false });
+    }
+}
+function creaMoneteLv3_2() {
+    monete = [];
+    let posizioniMonete = [
+        {x: 300, y: terra - 50},
+        {x: 900, y: terra - 400},
+        {x: 1000, y: terra - 50}, 
     ];
     for (let pos of posizioniMonete) {
         monete.push({ x: pos.x, y: pos.y, w: 25, h: 25, presa: false });
@@ -538,7 +554,6 @@ function draw(){
     // schermata Game Over 
     } else if(schema == 99){
         background(gameover);
-
     //schermata regole
 } else if (schema == 3) {
     background("pink");
@@ -732,15 +747,66 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
         gestisciMonete();
         disegnaPunteggio();
         if(player.x>=1700){
+            creaMoneteLv3_2();
             schema++;
             player.x=10;
         }
-}else if(schema ==8){
+}else if (schema==8) {
+    background(backimg); 
+    disegnaPiattaforme(piattaformeLv3_2);
+    gestisciPiattaforme(player, piattaformeLv3_2);
+        fill(255);
+        textSize(30);
+        text("Livello 3",300,50);
+        player.discesa();
+     
+        for(let n of nemici4){
+            n.moveDXSX();
+            image(n.imgShow, n.x, n.y);
+        }
+        // effetto lampeggio quando invincibile ----
+        if(!invincibile || frameCount % 8 < 4){
+            image(player.imgShow, player.x, player.y);
+        }
+        for(let i = nemici4.length - 1; i >= 0; i--){
+            if(collisioneDallAlto(player, nemici4[i])){
+                player.speedY = -player.jumpHeight / 1.5;
+                nemici4.splice(i, 1);
+            }
+        }
+        if(!invincibile){
+            for(let i = 0; i < nemici4.length; i++){
+                if(collisioneLaterale(player, nemici4[i])){
+                    vite--;
+                    invincibile = true;
+                    invincibileTimer = INVINCIBILE_DURATA;
+                    if(vite <= 0){
+                        schema = 99; // Game Over
+                    }
+                    break; // Un colpo alla volta
+                }
+            }
+        }
+        if(invincibile){
+            invincibileTimer--;
+            if(invincibileTimer <= 0){
+                invincibile = false;
+            }
+        }
+        disegnaVite();
+        gestisciMonete();
+        disegnaPunteggio();
+        if(player.x>=1700){
+            schema++;
+            player.x=10;
+        }
+}else if(schema ==9){
     background("pink");
     fill(255);
 textAlign(CENTER);
 textSize(60);
 text("YOU WON!!!", width/2, height/2);
+text("PUNTEGGIO :"+punteggio,width/2,height/2+60);
 
 }}
 

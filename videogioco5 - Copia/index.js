@@ -1,6 +1,8 @@
 let backimg;
 let backimg2;
 let backimg3;
+let backimg4;
+let backimg5;
 let gameover;
 let pause;
 let imgDx;
@@ -75,6 +77,8 @@ function preload(){
     backimg=loadImage('./img/sfondo1.png');
     backimg2=loadImage('./img/casa.png');
     backimg3=loadImage('./img/casa2.png');
+    backimg4=loadImage('./img/cuccia.png');
+    backimg5=loadImage('./img/cuccia2.png');
     pause=loadImage('./img/pausa.png');
     gameover=loadImage('./img/gameover.png');
     
@@ -725,7 +729,7 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
             player.x=10;
         }
 }else if (schema==7) {
-    background(backimg); 
+    background(backimg4); 
     disegnaPiattaforme(piattaformeLv3);
     gestisciPiattaforme(player, piattaformeLv3);
         fill(255);
@@ -775,7 +779,7 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
             player.x=10;
         }
 }else if (schema==8) {
-    background(backimg); 
+    background(backimg5); 
     disegnaPiattaforme(piattaformeLv3_2);
     gestisciPiattaforme(player, piattaformeLv3_2);
         fill(255);
@@ -835,8 +839,7 @@ text("PUNTEGGIO :"+punteggio,width/2,height/2+90);
 
 //piattaforme 
 function disegnaPiattaforme(piattaforme) {
-  //fill(139, 90, 43);imposta colore con colori rgb 
-  noFill();
+  fill("pink");//imposta colore con colori rgb o colore 
   stroke(0);//imposta colore bordo 
   strokeWeight(4);//spessore del bordo 
   for (let p of piattaforme) {

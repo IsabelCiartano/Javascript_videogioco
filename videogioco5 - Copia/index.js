@@ -29,6 +29,9 @@ const nemici3=[];
 const nemici4=[];
 let nemici5=[];
 
+let musicaBG;
+let slapmc;
+
 //  Vite e invincibilità 
 let vite = 3;
 let invincibile = false;
@@ -97,9 +100,19 @@ function preload(){
     imgN2dx=loadImage('./img/lupodx.png');
     imgN2sx=loadImage('./img/luposx.png');
     moneta=loadImage('./img/moneta.png');
+
+    musicaBG=loadSound('./sound/music.mp3');
+    slapmc=loadSound('./sound/slap.wav');
     
     personaggio1Img = pg1F;
     personaggio2Img = pg2F;
+}
+
+function slap(){
+    if (slapmc && !slapmc.isPlaying()) {
+        slapmc.setVolume(0.4);
+        slapmc.play();
+    }   
 }
 
 function setup(){
@@ -287,6 +300,11 @@ function scegliPersonaggio(immaginePG, imgDxPG, imgSxPG) {
 }
 
 function iniziaGioco() {
+    // Avvia musica
+    if (musicaBG && !musicaBG.isPlaying()) {
+        musicaBG.setVolume(0.4);
+        musicaBG.loop();
+    }
     // usa imgF/imgDx/imgSx salvati da scegliPersonaggio
     player = new Player(imgF, 100, terra);
     //monete 
@@ -479,6 +497,7 @@ function draw(){
             if(collisioneDallAlto(player, nemici[i])){
                 player.speedY = -player.jumpHeight / 1.5;
                 nemici.splice(i, 1);
+                slap();
             }
         }
         
@@ -543,6 +562,7 @@ function draw(){
             if(collisioneDallAlto(player, nemici2[i])){
                 player.speedY = -player.jumpHeight / 1.5;
                 nemici2.splice(i, 1);
+                slap();
             }
         }
         
@@ -577,7 +597,7 @@ function draw(){
         }
         
     } else if (schema == 0) {
-    background(pause);   
+    background(pause);  
     // schermata Game Over 
     } else if(schema == 99){
         background(gameover);
@@ -681,6 +701,7 @@ function draw(){
             if(collisioneDallAlto(player, nemici3[i])){
                 player.speedY = -player.jumpHeight / 1.5;
                 nemici3.splice(i, 1);
+                slap();
             }
         }
         
@@ -749,6 +770,7 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
             if(collisioneDallAlto(player, nemici4[i])){
                 player.speedY = -player.jumpHeight / 1.5;
                 nemici4.splice(i, 1);
+                slap();
             }
         }
         if(!invincibile){
@@ -799,6 +821,7 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
             if(collisioneDallAlto(player, nemici5[i])){
                 player.speedY = -player.jumpHeight / 1.5;
                 nemici5.splice(i, 1);
+                slap();
             }
         }
         if(!invincibile){

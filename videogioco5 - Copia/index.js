@@ -10,7 +10,7 @@ let imgSx;
 let imgF;
 let ferm;
 let player;
-let schemaprec = 1;
+let schemaprec=1;
 let schema;
 let start;
 let terra=680;
@@ -29,7 +29,7 @@ const nemici3=[];
 const nemici4=[];
 let nemici5=[];
 
-//  Vite e invincibilità ----
+//  Vite e invincibilità 
 let vite = 3;
 let invincibile = false;
 let invincibileTimer = 0;
@@ -263,17 +263,17 @@ function mouseClicked() {
     if (mouseX >= btnPersonaggio1.x && mouseX <= btnPersonaggio1.x + btnPersonaggio1.w &&
         mouseY >= btnPersonaggio1.y && mouseY <= btnPersonaggio1.y + btnPersonaggio1.h) {
         personaggioScelto = 1;
-        scegliPersonaggio(pg1F, pg1Dx, pg1Sx); // → va a schema 3
+        scegliPersonaggio(pg1F, pg1Dx, pg1Sx); // va a schema 3
     }
     if (mouseX >= btnPersonaggio2.x && mouseX <= btnPersonaggio2.x + btnPersonaggio2.w &&
         mouseY >= btnPersonaggio2.y && mouseY <= btnPersonaggio2.y + btnPersonaggio2.h) {
         personaggioScelto = 2;
-        scegliPersonaggio(pg2F, pg2Dx, pg2Sx); // → va a schema 3
+        scegliPersonaggio(pg2F, pg2Dx, pg2Sx); // va a schema 3
     }
 } else if (schema == 3) {
     if (mouseX >= btnRulesX && mouseX <= btnRulesX + btnRulesW &&
         mouseY >= btnRulesY && mouseY <= btnRulesY + btnRulesH) {
-        iniziaGioco(); // → va a schema 4
+        iniziaGioco(); //  va a schema 4
     }
 }
 }
@@ -362,7 +362,7 @@ function collisioneDallAlto(player, nemico){
     );
 }
 
-// Collisione laterale ----
+// Collisione laterale 
 function collisioneLaterale(player, nemico){
     // Se c'è già collisione dall'alto, non conta come laterale
     if(collisioneDallAlto(player, nemico)) return false;
@@ -381,7 +381,7 @@ function collisioneLaterale(player, nemico){
     );
 }
 
-// Disegna i cuori delle vite ----
+// Disegna i cuori delle vite 
 function disegnaVite(){
     let cuoreSize = 35;
     let marginX = 20;
@@ -469,7 +469,7 @@ function draw(){
             image(n.imgShow, n.x, n.y);
         }
         
-        // effetto lampeggio quando invincibile ----
+        // effetto lampeggio quando invincibile 
         if(!invincibile || frameCount % 8 < 4){
             image(player.imgShow, player.x, player.y);
         }
@@ -482,7 +482,7 @@ function draw(){
             }
         }
         
-        // Collisione laterale (perde vita) ----
+        // Collisione laterale (perde vita) 
         if(!invincibile){
             for(let i = 0; i < nemici.length; i++){
                 if(collisioneLaterale(player, nemici[i])){
@@ -498,7 +498,7 @@ function draw(){
         }
         
         
-        // aggiorna timer invincibilità ----
+        // aggiorna timer invincibilità 
         if(invincibile){
             invincibileTimer--;
             if(invincibileTimer <= 0){
@@ -507,7 +507,7 @@ function draw(){
         }
       
         
-        // disegna i cuori ----
+        // disegna i cuori 
         disegnaVite();
         //monete 
         gestisciMonete();
@@ -659,7 +659,7 @@ function draw(){
 
 }else if (schema ==6){
     background(backimg3); 
-    // Disegna piattaforme livello 2.1 ----
+    // Disegna piattaforme livello 2.1 
     disegnaPiattaforme(piattaformeLv2_2);
     gestisciPiattaforme(player, piattaformeLv2_2);
        
@@ -741,7 +741,7 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
             n.moveDXSX();
             image(n.imgShow, n.x, n.y);
         }
-        // effetto lampeggio quando invincibile ----
+        // effetto lampeggio quando invincibile 
         if(!invincibile || frameCount % 8 < 4){
             image(player.imgShow, player.x, player.y);
         }
@@ -791,7 +791,7 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
             n.moveDXSX();
             image(n.imgShow, n.x, n.y);
         }
-        // effetto lampeggio quando invincibile ----
+        // effetto lampeggio quando invincibile 
         if(!invincibile || frameCount % 8 < 4){
             image(player.imgShow, player.x, player.y);
         }
@@ -846,7 +846,7 @@ function disegnaPiattaforme(piattaforme) {
     rect(p.x, p.y, p.w, p.h, 4);
   }
 }
-// Gestione collisione con piattaforme ---- 
+// Gestione collisione con piattaforme  
 // Il player si appoggia sopra la piattaforma se ci cade dall'alto
 function gestisciPiattaforme(player, piattaforme) {
   let ph = player.imgShow.height;
@@ -855,7 +855,7 @@ function gestisciPiattaforme(player, piattaforme) {
   for (let p of piattaforme) {
     let playerBottom = player.y + ph;
     let prevBottom = playerBottom - player.speedY;
-    // Il player deve arrivare dall'alto sulla piattaforma ----
+    // Il player deve arrivare dall'alto sulla piattaforma 
     if (
       player.x + pw > p.x &&
       player.x < p.x + p.w &&

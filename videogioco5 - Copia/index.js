@@ -99,6 +99,8 @@ function preload(){
     imgNsx=loadImage('./img/nemicoSX.png');
     imgN2dx=loadImage('./img/lupodx.png');
     imgN2sx=loadImage('./img/luposx.png');
+    imgN3dx=loadImage('./img/topodx.png');
+    imgN3sx=loadImage('./img/toposx.png');
     moneta=loadImage('./img/moneta.png');
 
     musicaBG=loadSound('./sound/music.mp3');
@@ -343,21 +345,21 @@ function iniziaGioco() {
     nemico5.setupEnemy(1000, 1500, imgN2dx, imgN2sx, 5);
     nemici3.push(nemico5);
     
-    nemico6 = new Player(imgN2dx, 1000, terra);
-    nemico6.setupEnemy(1000, 1500, imgN2dx, imgN2sx, 5);
+    nemico6 = new Player(imgN3dx, 1000, terra);
+    nemico6.setupEnemy(1000, 1500, imgN3dx, imgN3sx, 5);
     nemici4.push(nemico6);
 
-    nemico7 = new Player(imgN2dx, 1000, terra);
-    nemico7.setupEnemy(1000, 1500, imgN2dx, imgN2sx, 5);
+    nemico7 = new Player(imgN3dx, 400, terra);
+    nemico7.setupEnemy(300, 800, imgN3dx, imgN3sx, 5);
     nemici5.push(nemico7);
 
-    nemico8 = new Player(imgN2dx, 1000, terra);
-    nemico8.setupEnemy(1000, 1500, imgN2dx, imgN2sx, 5);
+    nemico8 = new Player(imgN3dx, 1000, terra);
+    nemico8.setupEnemy(1000, 1500, imgN3dx, imgN3sx, 3);
     nemici5.push(nemico8);
 
-    nemico9 = new Player(imgN2dx, 910, terra-350);
-    nemico9.setupEnemy(910, 1000, imgN2dx, imgN2sx, 5);
-    nemici5.push(nemico5);
+    nemico9 = new Player(imgN3dx, 910, terra);
+    nemico9.setupEnemy(910, 1400, imgN3dx, imgN3sx, 5);
+    nemici5.push(nemico9);
     
 
     schema = 4;
@@ -855,7 +857,7 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
     fill(255);
 textAlign(CENTER);
 textSize(70);
-text("YOU WON!!!", width/2, height/2);
+text("YOU Win!!!", width/2, height/2);
 text("PUNTEGGIO :"+punteggio,width/2,height/2+90);
 
 }}

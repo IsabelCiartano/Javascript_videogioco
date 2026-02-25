@@ -119,7 +119,7 @@ function slap(){
 
 function setup(){
     createCanvas(windowWidth, windowHeight);
-    frameRate(80);
+    frameRate(50);
     
     btnPersonaggio1.x = width/2 - 350;
     btnPersonaggio1.y = height/2 - 125;
@@ -250,14 +250,7 @@ function keyPressed(){
     if(schema < 4 || !player) return;
 
     if(key == "w") player.jump();
-    if(key == "a"){
-        player.imgShow = (personaggioScelto == 1) ? pg1Sx : pg2Sx;
-        player.moveSx();
-    }
-    if(key == "d"){
-        player.imgShow = (personaggioScelto == 1) ? pg1Dx : pg2Dx;
-        player.moveDx();
-    }
+   
 }
 
 function mouseClicked() {
@@ -299,6 +292,20 @@ function scegliPersonaggio(immaginePG, imgDxPG, imgSxPG) {
     imgDx = imgDxPG;
     imgSx = imgSxPG;
     schema = 3; // mostra le rules
+}
+function gestisciMovimento() {
+    if (!player) return;
+    
+    if (keyIsDown(65)) { // tasto A
+        player.imgShow = (personaggioScelto == 1) ? pg1Sx : pg2Sx;
+        player.moveSx();
+    } else if (keyIsDown(68)) { // tasto D
+        player.imgShow = (personaggioScelto == 1) ? pg1Dx : pg2Dx;
+        player.moveDx();
+    } else {
+        // Nessun tasto premuto → mostra immagine frontale
+        player.imgShow = (personaggioScelto == 1) ? pg1F : pg2F;
+    }
 }
 
 function iniziaGioco() {
@@ -482,6 +489,7 @@ function draw(){
         fill(255);
         textSize(30);
         text("Livello 1",300,50);
+        gestisciMovimento();
         player.discesa();
      
         for(let n of nemici){
@@ -542,14 +550,14 @@ function draw(){
         
     } else if(schema==5){//livello 2
         background(backimg2); 
-         // Disegna piattaforme livello 2 
-        disegnaPiattaforme(piattaformeLv2);
-        gestisciPiattaforme(player, piattaformeLv2);
-      
         fill(255);
         textSize(30);
         text("Livello 2",300,40);
+        gestisciMovimento();
         player.discesa();
+          // Disegna piattaforme livello 2 
+        disegnaPiattaforme(piattaformeLv2);
+        gestisciPiattaforme(player, piattaformeLv2);
      
         for(let n of nemici2){
             n.moveDXSX();
@@ -681,14 +689,14 @@ function draw(){
 
 }else if (schema ==6){
     background(backimg3); 
-    // Disegna piattaforme livello 2.1 
-    disegnaPiattaforme(piattaformeLv2_2);
-    gestisciPiattaforme(player, piattaformeLv2_2);
-       
         fill(255);
         textSize(30);
         text("Livello 2",300,40);
+        gestisciMovimento();
         player.discesa();
+            // Disegna piattaforme livello 2.1 
+    disegnaPiattaforme(piattaformeLv2_2);
+    gestisciPiattaforme(player, piattaformeLv2_2);
      
         for(let n of nemici3){
             n.moveDXSX();
@@ -753,12 +761,14 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
         }
 }else if (schema==7) {
     background(backimg4); 
-    disegnaPiattaforme(piattaformeLv3);
-    gestisciPiattaforme(player, piattaformeLv3);
+   
         fill(255);
         textSize(30);
         text("Livello 3",300,50);
+        gestisciMovimento();
         player.discesa();
+         disegnaPiattaforme(piattaformeLv3);
+    gestisciPiattaforme(player, piattaformeLv3);
      
         for(let n of nemici4){
             n.moveDXSX();
@@ -804,12 +814,14 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
         }
 }else if (schema==8) {
     background(backimg5); 
-    disegnaPiattaforme(piattaformeLv3_2);
-    gestisciPiattaforme(player, piattaformeLv3_2);
+   
         fill(255);
         textSize(30);
         text("Livello 3",300,50);
+        gestisciMovimento();
         player.discesa();
+         disegnaPiattaforme(piattaformeLv3_2);
+    gestisciPiattaforme(player, piattaformeLv3_2);
      
         for(let n of nemici5){
             n.moveDXSX();
@@ -819,7 +831,7 @@ text("YOU ARE ON FIRE!!!", width/2, height/2);
         if(!invincibile || frameCount % 8 < 4){
             image(player.imgShow, player.x, player.y);
         }
-        for(let i = nemici4.length - 1; i >= 0; i--){
+        for(let i = nemici5.length - 1; i >= 0; i--){
             if(collisioneDallAlto(player, nemici5[i])){
                 player.speedY = -player.jumpHeight / 1.5;
                 nemici5.splice(i, 1);
@@ -877,14 +889,15 @@ function gestisciPiattaforme(player, piattaforme) {
   let ph = player.imgShow.height;
   let pw = player.imgShow.width;
   player.sullaTerraPiattaforma = false;
+
   for (let p of piattaforme) {
     let playerBottom = player.y + ph;
-    let prevBottom = playerBottom - player.speedY;
-    // Il player deve arrivare dall'alto sulla piattaforma 
+    let prevBottom = player.y + ph - player.speedY; // posizione precedente
+
     if (
       player.x + pw > p.x &&
       player.x < p.x + p.w &&
-      prevBottom <= p.y &&
+      prevBottom <= p.y + 10 &&   // tolleranza +10
       playerBottom >= p.y &&
       player.speedY >= 0
     ) {
@@ -894,6 +907,7 @@ function gestisciPiattaforme(player, piattaforme) {
     }
   }
 }
+
 
 
 

@@ -2,7 +2,7 @@ class Player {
     constructor(immagineIniziale, x, y) {
         this.x = x;
         this.y = y;
-        this.vx = 40;
+        this.vx = 5;
         this.imgShow = immagineIniziale;
 
         this.speedY = 0;        
@@ -37,16 +37,18 @@ class Player {
     this.sullaTerraPiattaforma = false;
 }
     }
-
-    discesa() {
+discesa() {
+    if (!this.ground && !this.sullaTerraPiattaforma) {
         this.speedY += this.gravity;
-        this.y += this.speedY;
-        if (this.y >= 680) {
-            this.y = 680;
-            this.speedY = 0;
-            this.ground = true;
-        }
     }
+    this.y += this.speedY;
+    if (this.y >= 680) {
+        this.y = 680;
+        this.speedY = 0;
+        this.ground = true;
+        this.sullaTerraPiattaforma = false;
+    }
+}
     
     // Metodo per configurare un nemico
     setupEnemy(leftLimit, rightLimit, imgDx, imgSx, velocita) {

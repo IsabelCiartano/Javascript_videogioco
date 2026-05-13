@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cocktail</title>
+</head>
+<body>
+    <header>
+
+    </header>
+        <style>
+        #risultati{
+            display:flex;
+            flex-wrap: wrap;
+            gap:20px;
+
+        }
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+    </style>
+    <section>
+        <form>
+        <label>Cocktail:</label>
+            <input type="text" id="cocktail"><br>
+            <button id="button">Cerca</button>
+            <div id="risultati">
+              
+    </div>  
+            
+        </form>
+    </section>
+
+ <script>
+const cocktail = document.getElementById("cocktail");
+const cerca = document.getElementById("button");
+const div =document.getElementById("risultati")
+
+function creaCardCocktail(cocktail) {
+    const card = document.createElement("div");
+    
+    card.className = "card";
+
+    const titolo = document.createElement("h2");
+    titolo.textContent = cocktail.strDrink;
+
+    const immagine=document.createElement("img");
+    immagine.src=cocktail.strDrinkThumb+"/small"
+
+    card.appendChild(titolo);
+    card.appendChild(immagine);
+
+    const btn=document.createElement("button");
+    btn.type="button"
+    btn.id="dettagli"
+    btn.textContent="DETTAGLI"
+    const spazio=document.createElement("br")
+    card.appendChild(spazio)
+    card.appendChild(btn)
+
+    btn.addEventListener("click",function(){
+    const istruzioni = document.createElement("p");
+    istruzioni.textContent = cocktail.strInstructionsIT;
+
+    const ingredienti = document.createElement("p");
+    let listaIngredienti ="Ingredienti : "+"<br>"
+    for (let k=1;k<=15;k++){
+        const ingrediente =cocktail[`strIngredient${k}`];//alt+ 96 per back tick `
+        const quant=cocktail[`strMeasure${k}`];
+        if(ingrediente && quant){
+            listaIngredienti+= quant+" "+ ingrediente+"<br>"
+        }
+    }
+    ingredienti.innerHTML=listaIngredienti;
+    const alcolico=document.createElement("h3")
+    alcolico.textContent=cocktail.strAlcoholic;
+    risultati.innerHTML=""
+    risultati.appendChild(titolo);
+    risultati.appendChild(immagine);
+    risultati.appendChild(ingredienti);
+    risultati.appendChild(alcolico);
+    risultati.appendChild(istruzioni);}
+) 
+    return card;
+}
+
+cerca.addEventListener("click", function(e) {
+    e.preventDefault();
+    risultati.innerHTML="";
+    let url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="+ cocktail.value;
+
+    fetch(url)
+    .then(response => response.json())
+    .then(dati => {
+
+        const datiJson=dati
+        console.log(datiJson)
+
+        if(datiJson.drinks){
+        datiJson.drinks.forEach(element => {
+                console.log(element);
+                const card=creaCardCocktail(element)
+                div.appendChild(card);
+               
+            });
+        }
+       
+    
+
+    });
+});
+</script>
+    
+</body>
+</html>

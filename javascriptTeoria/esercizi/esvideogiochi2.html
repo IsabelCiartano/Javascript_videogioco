@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <title>🎮 La Mia Collezione — GET</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 12px 0;
+    }
+
+    .genere {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .errore {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🎮 La Mia Collezione</h1>
+  <button id="lista">LISTA</button>
+  <button id="cerca">CERCA</button>
+  <button id="aggiorna">AGGIORNA</button>
+  <div id="contenuto"></div>
+
+
+  <script>
+
+    const API_URL = "https://69f9a3b3c509a40d3aa2e0a6.mockapi.io/api/v1/videogiochi";
+    let giochi = []
+    const lista = document.getElementById("lista");
+    const cerca = document.getElementById("cerca");
+    const aggiorna = document.getElementById("aggiorna");
+
+    function creaCardGioco(gioco) {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML = `
+        <h3>${gioco.titolo}</h3>
+        <p class="genere">${gioco.genere} — ${gioco.anno}</p>
+      `;
+      return card;
+    }
+
+    function mostraGiochi(giochi) {
+      const lista = document.getElementById("contenuto");
+      lista.innerHTML = "";
+      giochi.forEach((gioco) => lista.appendChild(creaCardGioco(gioco)));
+    }
+
+    function caricaGiochi() {
+      const lista = document.getElementById("contenuto");
+
+      // scrivi qui il codice fetch con .then() e .catch()
+
+      fetch(API_URL)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Errore HTTP: ${response.status}`);
+          }
+          return response.json();
+
+        })
+        .then(data => {
+          giochi = data;
+          mostraGiochi(data)
+        })
+
+        .catch(error => console.error('Errore:', error));
+
+    }
+
+
+    function cercaVideogioco() {
+
+      const nome = document.getElementById("txtNome");
+
+      fetch(API_URL)
+        .then(response => response.json())
+        .then(giochi => {
+
+          const trovato = giochi.find(g => g.titolo.toUpperCase() === nome.value.toUpperCase());
+
+          const risultato = document.getElementById("risultato");
+
+          risultato.innerHTML = "";
+
+          if (trovato) {
+
+            risultato.appendChild(creaCardGioco(trovato));
+
+          } else {
+
+            risultato.innerHTML = `
+                <p class="errore">
+                    Gioco non trovato
+                </p>
+            `;
+          }
+
+        });
+
+    }
+
+    function mostraformRicerca() {
+      const div = document.getElementById("contenuto");
+      div.innerHTML = "";
+      const text = document.createElement("input");
+      text.type = "text"
+      text.id = "txtNome"
+      const btn = document.createElement("button");
+      btn.textContent = "CERCA";
+      const ris = document.createElement("div");
+      ris.id = "risultato";
+
+      div.appendChild(text);
+      div.appendChild(btn);
+      div.appendChild(ris);
+
+      btn.addEventListener("click", cercaVideogioco);
+    }
+
+    function mostraformNuovo() {
+      const div = document.getElementById("contenuto");
+      div.innerHTML = "";
+      const titolo = document.createElement("input");
+      titolo.type = "text"
+      titolo.id = "titolo"
+      titolo.placeholder = "titolo"
+      const genere = document.createElement("input");
+      genere.type = "text";
+      genere.id = "genere";
+      genere.placeholder = "genere";
+
+      const anno = document.createElement("input");
+      anno.type = "text";
+      anno.id = "anno";
+      anno.placeholder = "anno";
+
+      const btnSalva = document.createElement("button");
+      btnSalva.textContent = "SALVA";
+
+      div.appendChild(titolo);
+      div.appendChild(genere);
+      div.appendChild(anno);
+      div.appendChild(btnSalva)
+
+      btnSalva.addEventListener("click", aggiungiVideogioco);
+    }
+    function aggiungiVideogioco() {
+
+      const nuovoGioco = {
+
+        titolo: document.getElementById("titolo").value,
+
+        genere: document.getElementById("genere").value,
+
+        anno: document.getElementById("anno").value
+      };
+
+      giochi.push(nuovoGioco);
+      mostraGiochi(giochi);
+      fetch(API_URL, {
+        method: 'POST', // Indichiamo che vogliamo creare un nuovo elemento
+        headers: {
+          'Content-Type': 'application/json'
+          // Indichiamo che stiamo inviando dati in formato JSON
+        },
+        body: JSON.stringify(nuovoGioco)
+        // Convertiamo l'oggetto JavaScript in JSON
+
+      }).then(response => {
+        if (!response.ok) {
+          throw new Error('Errore nella creazione del gioco');
+        }
+        return response.json(); // Convertiamo la risposta in JSON
+      }).then(data => console.log('gioco creato:', data)) // Stampiamo il risultato
+        .catch(error => console.error('Errore:', error)); // Gestiamo eventuali errori
+
+    }
+
+
+    lista.addEventListener("click", caricaGiochi);
+    cerca.addEventListener("click", mostraformRicerca);
+    aggiorna.addEventListener("click", mostraformNuovo);
+    
+  </script>
+
+</body>
+
+</html>

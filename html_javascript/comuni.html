@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comuni</title>
+</head>
+<body>
+    <header>
+
+    </header>
+    <section>
+        <form>
+            <label>Comune:</label>
+            <input type="text" id="comune"><br>
+            <label>Regione</label>
+            <input type="text" id="regione"><br>
+            <button id="button">Cerca</button>
+            <div id="risultati"></div>
+            
+        </form>
+    </section>
+
+ <script>
+const comune = document.getElementById("comune");
+const regione=document.getElementById("regione");
+const cerca = document.getElementById("button");
+const risultati =document.getElementById("risultati")
+
+cerca.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    risultati.innerHTML = "";
+
+    let url = "./comuni_completo.json";
+
+    fetch(url)
+    .then(response => response.json())
+    .then(dati => {
+
+        let trovatoComune = false;
+        let trovatoRegione = false;
+        const datiJson=dati
+    
+        if (comune.value.trim() !== "") {
+            datiJson.forEach(el => {
+                if (el.nome.toLowerCase() === comune.value.toLowerCase()) {
+                    const div = document.createElement("div");
+                    div.textContent = el.nome + " " + el.cap[0];
+                    risultati.appendChild(div);
+                    trovatoComune = true;
+                }
+            });
+
+            if (!trovatoComune) {
+                const div = document.createElement("div");
+                div.textContent = "Comune non trovato";
+                risultati.appendChild(div);
+            }
+        }
+
+        if (regione.value !== "") {
+            dati.forEach(el => {
+                if (el.regione.nome.toLowerCase() === regione.value.toLowerCase()) {
+                    const div = document.createElement("div");
+                    div.textContent = el.nome;
+                    risultati.appendChild(div);
+                    trovatoRegione = true;
+                }
+            });
+
+            if (!trovatoRegione) {
+                const div = document.createElement("div");
+                div.textContent = "Regione non trovata";
+                risultati.appendChild(div);
+            }
+        }
+
+    });
+});
+</script>
+    
+</body>
+</html>

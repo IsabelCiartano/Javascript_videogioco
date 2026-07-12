@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        #giocatori{
+            display:flex;
+            flex-direction:column;
+            gap:40px;
+        }
+
+        .card{
+            box-shadow:0 4px 8px 0 rgb(0,0,0,0.2);
+            transition:0.3;
+        }
+        .card:hover{
+            box-shadow:0 8px 16px rgb(0,0,0,0.2)
+        }
+        .container{
+            padding:2px 16px;
+        }
+    </style>
+    <label>Nome</label>
+    <input type="text" id="nome"><br>
+    <label>Cognome</label>
+    <input type="text" id="cognome"><br>
+
+    <button id="cerca">cerca</button>
+    <div id="giocatore"></div>
+    
+</body>
+<script>
+
+    const btn=document.getElementById("cerca")
+    const risultati=document.getElementById("giocatore")
+    const nome=document.getElementById("nome")
+    const cognome=document.getElementById("cognome")
+
+
+
+function mostraGiocatore(giocatore){
+    const card=document.createElement("div")
+    card.className="card"
+    
+    const nome=document.createElement("h2")
+    nome.textContent=giocatore.nome
+
+    const cognome=document.createElement("h2")
+    cognome.textContent=giocatore.cognome
+
+    const foto=document.createElement("img")
+    foto.src=giocatore.foto
+
+    const ruolo=document.createElement("p")
+    ruolo.textContent=giocatore.ruolo
+
+    const anno=document.createElement("p")
+    anno.textContent=giocatore.anno_nascita
+
+    const squadra=document.createElement("p")
+    squadra.textContent=giocatore.squadra_attuale
+
+    const mercato=document.createElement("p")
+    mercato.textContent=giocatore.valore_market_euro
+
+    const gol_attuali=document.createElement("p")
+    gol_attuali.textContent=giocatore.gol_attuali
+
+    let tot_gol=0
+    let tot_assist=0
+
+    card.appendChild(nome)
+    card.appendChild(cognome)
+    card.appendChild(foto)
+    card.appendChild(ruolo)
+    card.appendChild(anno)
+    card.appendChild(squadra)
+    card.appendChild(mercato)
+    card.appendChild(gol_attuali)
+
+    giocatore.elenco_squadre_precedenti.forEach(element=>{
+        tot_gol+=element.gol
+        tot_assist+=element.assist
+    })
+
+    tot_gol+=giocatore.gol_attuali
+    tot_assist+=giocatore.assist_attuali
+
+    const gol=document.createElement("p")
+    gol.textContent="gol : " + tot_gol
+    const assist=document.createElement("p")
+    assist.textContent="assist : "+ tot_assist
+
+    card.appendChild(gol)
+    card.appendChild(assist)
+
+   return card
+}
+    const URL="./giocatori.json"
+
+    btn.addEventListener("click",function(e){
+        e.preventDefault()
+        fetch(URL)
+        .then(response=>response.json())
+        .then(dati=>{
+            datiJson=dati
+            //console.log(datiJson)
+            datiJson.campionatoSerieA.forEach(element => {
+                //console.log(element)
+                if(element.nome.toLowerCase() == nome.value.toLowerCase() && element.cognome.toLowerCase() == cognome.value.toLowerCase()){
+                    risultati.appendChild(mostraGiocatore(element))
+                }
+                
+            });
+        })
+    })
+</script>
+</html>

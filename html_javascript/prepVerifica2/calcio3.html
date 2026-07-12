@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcio 3</title>
+</head>
+<body>
+    <style>
+        #articoli{
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .card{
+            box-shadow: 0 4px 8px 0 rgb(0, 0, 0 ,0.2);
+            transition:0.3s;
+        }
+           .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+    </style>
+    <div id="articoli">
+        <div id="abbigliamento"><h1>ABBIGLIAMENTO</h1><br></div>
+        <div id="calzature"><h1>CALZATURE</h1><br></div>
+        <div id="attrezzatura"><h1>ATTREZZATURA</h1><br></div>
+        <div id="merch"><h1>MERCHANDISING</h1><br></div>
+        <div id="accessori"><h1>ACCESSORI</h1><br></div>
+    </div>
+
+    <h1>CARRELLO :</h1><br>
+    <table id ="carrello"></table>
+    <h3>totale:</h3><br>
+    <div id="tot"></div>
+    
+</body>
+
+<script>
+    const abbigliamento=document.getElementById("abbigliamento")
+    const calzature=document.getElementById("calzature")
+    const attrezzatura=document.getElementById("attrezzatura")
+    const merch=document.getElementById("merch")
+    const accessori=document.getElementById("accessori")
+
+    const carrello=document.getElementById("carrello")
+    const totale=document.getElementById("tot")
+
+    let articoli=[]
+    let carr=[]
+    let tot=0
+
+
+function cardArticolo(art){
+    const card=document.createElement("div")
+    card.className="card"
+
+    const nome=document.createElement("h2")
+    nome.textContent=art.nome
+    const desc=document.createElement("p")
+    desc.textContent=art.descrizione_breve
+    const img=document.createElement("img")
+    img.src=art.immagine
+    const pr=document.createElement("h3")
+    pr.textContent=art.prezzo
+
+    card.appendChild(nome)
+    card.appendChild(img)
+    card.appendChild(desc)
+    card.appendChild(pr)
+
+    const btn_carrello=document.createElement("button")
+    btn_carrello.type="button"
+    btn_carrello.textContent="AGGIUNGI AL CARRELLO"
+    card.appendChild(btn_carrello)
+
+    btn_carrello.addEventListener("click",function(){aggiungiCarrello(art.id,carr)})
+    if(art.tipo_articolo==="abbigliamento"){
+        abbigliamento.appendChild(card)
+    }
+    if(art.tipo_articolo==="calzature"){
+        calzature.appendChild(card)
+    }
+    if(art.tipo_articolo==="attrezzatura"){
+        attrezzatura.appendChild(card)
+    }
+    if(art.tipo_articolo==="merchandising"){
+        merch.appendChild(card)
+    }
+    if(art.tipo_articolo==="accessori"){
+        accessori.appendChild(card)
+    }
+}
+
+function stampaCarrello(array){
+    carrello.innerHTML=""
+    array.forEach(element=>{
+        const articolo=articoli.find(el=>el.id==element.id)
+        const riga = document.createElement("tr")
+        const name=document.createElement("td")
+        name.textContent=articolo.nome
+        const id=document.createElement("td")
+        id.textContent=articolo.id
+        const tipo=document.createElement("td")
+        tipo.textContent=articolo.tipo_articolo
+        const quantita=document.createElement("td")
+        quantita.textContent=element.quantita
+
+        riga.appendChild(id)
+        riga.appendChild(tipo)
+        riga.appendChild(name)
+        riga.appendChild(quantita)
+
+        carrello.appendChild(riga)
+
+        tot+=articolo.prezzo
+        totale.textContent=tot
+    })
+}
+
+function aggiungiCarrello(id,array){
+    let esiste=array.find(element=>element.id===id)
+    if(esiste){
+        esiste.quantita+=1
+    }else{
+        array.push({
+            id:id,
+            quantita:1
+        })
+    }
+    stampaCarrello(array)
+}
+
+
+    const URL ="./articoli_calcio.json"
+    fetch(URL)
+    .then(response=>response.json())
+    .then(dati=>{
+        const datiJson=dati
+        articoli=datiJson
+        datiJson.forEach(element => {
+            console.log(element)
+            cardArticolo(element)
+        });
+    })
+</script>
+</html>

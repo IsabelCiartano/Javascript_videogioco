@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="ricercaIngrediente">
+        <form>
+            <label>ricerca per ingrediente</label>
+            <input type="text" id="inputIngrediente">
+            <button id="btn-ingrediente">CERCA</button>
+        </form>
+    </div>
+
+    <div id="antipasto"><h1>ANTIPASTI</h1></div>
+    <div id="primoPiatto"><h1>PRIMO PIATTO</h1></div>
+    <div id="secondoPiatto"><h1>SECONDO PIATTO</h1></div>
+    <div id="contorno"><h1>CONTORNO</h1></div>
+    <div id="dolce"><h1>DOLCE</h1></div>
+</body>
+
+    <script>
+
+        const btnIngrediente = document.getElementById("btn-ingrediente");
+        const inputBtnIngrediente = document.getElementById("inputIngrediente");
+        const containerAntipasto = document.getElementById("antipasto");
+        const containerPrimopiatto = document.getElementById("primoPiatto");
+        const containerSecondopiatto = document.getElementById("secondoPiatto");
+        const containerContorno = document.getElementById("contorno");
+        const containerDolce = document.getElementById("dolce");
+
+        const URL = "./piatti_cinesi.json";
+
+        fetch(URL)
+                .then(response => response.json())  
+                .then(dati => {
+                    const datiJson = dati;
+                    btnIngrediente.addEventListener("click", function(e){
+                        e.preventDefault();
+                        datiJson.forEach(piatto => {
+                            piatto.ingredienti.forEach(ingrediente => {
+                                let aggiunto = false;
+                                if(ingrediente == inputBtnIngrediente.value && aggiunto == false){
+                                    aggiungiCardPiatto(piatto);
+                                    aggiunto = true;
+                                }
+                            })
+                        })
+                    })
+                })
+
+        function aggiungiCardPiatto(piatto){
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.innerHTML = `
+                <img src = "${piatto.immagine}" alt="${piatto.nome}">
+                <div>
+                    <h3>${piatto.nome}</h3>
+                    <h2>tipo piatto: ${piatto.tipo_piatto}</h2>    
+                </div>
+            `;
+            if(piatto.tipo_piatto == "antipasto"){
+                containerAntipasto.appendChild(card);
+            }else if(piatto.tipo_piatto == "primopiatto"){
+                containerPrimopiatto.appendChild(card);
+            }else if(piatto.tipo_piatto == "secondopiatto"){
+                containerSecondopiatto.appendChild(card);
+            }else if(piatto.tipo_piatto == "contorno"){
+                containerContorno.appendChild(card);
+            }else{
+                containerDolce.appendChild(card);
+            }
+        }
+
+    </script>
+
+</html>

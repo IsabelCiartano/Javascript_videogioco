@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Playlist annidate</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }
+    .playlist { border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+    .playlist h2 { margin: 0 0 4px; }
+    .playlist .autore { color: #888; font-size: 13px; margin-bottom: 12px; }
+    .playlist ul { margin: 0; padding-left: 20px; }
+    .playlist li { font-size: 14px; margin-bottom: 4px; }
+    .vuota { color: #aaa; font-style: italic; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+  <h1>🎵 Le mie playlist</h1>
+  <div id="output"></div>
+
+ 
+
+  <script>
+   
+    const URL = "./playlist.json";
+
+    const div_output = document.getElementById("output");
+
+    // ── Costruisce la lista <ul> delle canzoni di una singola playlist ──
+      // Se la playlist è vuota, mostra un messaggio alternativo
+    function creaCanzoni(canzoni) {
+  const lista = document.createElement("ul");
+
+  if (canzoni.length === 0) {
+    lista.textContent = "lista vuota";
+  } else {
+
+    canzoni.forEach(element => {
+
+      const canzone = document.createElement("li");
+      
+
+      canzone.textContent = element.titolo +" "+element.artista +" " +element.anno +" ";
+
+      lista.appendChild(canzone);
+    
+    });
+  }
+
+  return lista;
+}
+
+    // ── Costruisce la card di una playlist ────────────────────────
+    function creaCardPlaylist(playlist) {
+
+      const card =document.createElement("div")
+      const nome=document.createElement("h2")
+      const autore=document.createElement("p")
+        nome.textContent=playlist.nome;
+        autore.textContent=playlist.autore;
+        card.appendChild(nome);
+        card.appendChild(autore);
+        card.appendChild(creaCanzoni(playlist.canzoni));
+    
+
+      //EXTRA inserire bottone aggiungi canzone e collegarlo a una funzione che mostra 
+      // un form per inserire i dati di una nuova canzone (titolo, artista, anno) e 
+      // collega l'ascoltatore alla funzione aggiungiCanzone(objPlaylist, nuovaCanzone)
+
+      return card;
+    }
+
+    // ── Mostra tutte le playlist ──────────────────────────────────
+    function mostraPlaylists(lista) {
+
+      div_output.innerHTML="";
+      lista.forEach(el=>{
+        div_output.appendChild(creaCardPlaylist(el))
+      })
+    }
+
+    //____ carica le playlist dal json
+    // se tutto va bene, mostra le playlist
+    // se c'è un errore, mostra un messaggio in console
+
+    let datiJson=[]
+    fetch(URL)
+    .then(response => response.json())
+    .then(dati => {
+
+         datiJson=dati
+        console.log(datiJson)
+
+
+      mostraPlaylists(datiJson);
+      iterarori()
+    })
+    .catch(message=>console.log("errore"+ message));
+
+
+    // -- aggiunge una nuova canzone alla playlist con id specificato
+    function aggiungiCanzone(objPlaylist, nuovaCanzone) {
+      // per il mmomento mostra a console il messaggio 
+      console.log("Aggiunta a playlist "+ objPlaylist.nome + "canzone:" + nuovaCanzone);
+      // EXTRA: qui si dovrebbe aggiungere la canzone all'array canzoni della playlist e 
+      // poi aggiornare la visualizzazione
+
+    }
+
+    // ────────────────────────────────────────────────────────────
+    // Esempi di iteratori su struttura annidata
+  
+    // ────────────────────────────────────────────────────────────
+function iterarori(){
+    // 1. find() — trova la playlist per nome
+    const rock = datiJson.find(playlist=>playlist.nome=="Rock Classics");
+    console.log("Playlist trovata:", rock);
+
+    // 2. filter() — solo playlist con almeno 3 canzoni
+    const grandi = datiJson.filter(playlist=>playlist.canzoni.length >3);
+    console.log("Playlist con 3+ canzoni:", grandi);
+
+    // 3. map() sull'array esterno — crea un array con solo nome e numero canzoni
+    const riassunto = datiJson.map(playlist=>{
+      return {nome:playlist.nome, numerocanzoni :playlist.canzoni.length}
+    })
+
+    console.log("Riassunto:", riassunto);
+// 4. Accedere all'array annidato — canzoni della prima playlist
+const primaCanzoni = datiJson.playlist[1].canzoni;
+console.log("Canzoni di Rock Classics:", primaCanzoni);
+
+// 5. filter() sull'array annidato — canzoni degli anni '70
+const anni70 = primaCanzoni.filter(canzone => canzone.anno >= 1970 && canzone.anno < 1980);
+
+console.log("Canzoni anni '70:", anni70);
+
+// 6. Iteratore doppio — tutte le canzoni di tutte le playlist
+const tutteLeCanzoni = [];
+
+datiJson.playlist.forEach(playlist => {
+    playlist.canzoni.forEach(canzone => {
+        tutteLeCanzoni.push(canzone);
+    });
+});
+
+console.log("Tutte le canzoni:", tutteLeCanzoni);
+}
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "categoria": "abbigliamento",
+    "nome": "Canotta Lakers",
+    "marca": "Nike",
+    "colori": ["giallo", "viola"],
+    "materiale": "poliestere",
+    "taglie": ["S", "M", "L", "XL"],
+    "prezzo": 79.99,
+    "immagine": "img/canotta_lakers.jpg"
+  },
+  {
+    "id": 2,
+    "categoria": "abbigliamento",
+    "nome": "Pantaloncini Chicago Bulls",
+    "marca": "Adidas",
+    "colori": ["rosso", "nero"],
+    "materiale": "cotone",
+    "taglie": ["M", "L"],
+    "prezzo": 39.99,
+    "immagine": "img/pantaloncini_bulls.jpg"
+  },
+  {
+    "id": 3,
+    "categoria": "scarpe",
+    "nome": "Air Zoom Basket",
+    "marca": "Nike",
+    "colori": ["nero", "bianco"],
+    "materiale": "pelle",
+    "numeri": [40, 41, 42, 43, 44],
+    "prezzo": 119.99,
+    "immagine": "img/air_zoom.jpg"
+  },
+  {
+    "id": 4,
+    "categoria": "scarpe",
+    "nome": "Curry Flow",
+    "marca": "Under Armour",
+    "colori": ["blu", "giallo"],
+    "materiale": "gomma",
+    "numeri": [39, 40, 41, 42],
+    "prezzo": 129.99,
+    "immagine": "img/curry_flow.jpg"
+  },
+  {
+    "id": 5,
+    "categoria": "accessori",
+    "nome": "Polsini Sport",
+    "marca": "Puma",
+    "colori": ["bianco", "nero"],
+    "materiale": "cotone",
+    "confezione": ["destro", "sinistro"],
+    "prezzo": 9.99,
+    "immagine": "img/polsini.jpg"
+  },
+  {
+    "id": 6,
+    "categoria": "accessori",
+    "nome": "Zaino Basket",
+    "marca": "Nike",
+    "colori": ["nero", "rosso"],
+    "materiale": "poliestere",
+    "scomparti": ["scarpe", "vestiti", "accessori"],
+    "prezzo": 49.99,
+    "immagine": "img/zaino.jpg"
+  },
+  {
+    "id": 7,
+    "categoria": "attrezzatura",
+    "nome": "Pallone NBA",
+    "marca": "Spalding",
+    "colori": ["arancione", "nero"],
+    "materiale": "gomma",
+    "misure": [5, 6, 7],
+    "prezzo": 44.99,
+    "immagine": "img/pallone.jpg"
+  },
+  {
+    "id": 8,
+    "categoria": "attrezzatura",
+    "nome": "Pompa per Palloni",
+    "marca": "Molten",
+    "colori": ["nero"],
+    "materiale": "plastica",
+    "accessoriInclusi": ["ago", "tubo"],
+    "prezzo": 14.99,
+    "immagine": "img/pompa.jpg"
+  },
+  {
+    "id": 9,
+    "categoria": "merchandising",
+    "nome": "Cappellino NBA",
+    "marca": "New Era",
+    "colori": ["nero", "rosso", "blu"],
+    "materiale": "cotone",
+    "taglie": ["S/M", "L/XL"],
+    "prezzo": 29.99,
+    "immagine": "img/cappellino.jpg"
+  },
+  {
+    "id": 10,
+    "categoria": "merchandising",
+    "nome": "Tazza Lakers",
+    "marca": "NBA Store",
+    "colori": ["giallo", "bianco"],
+    "materiale": "ceramica",
+    "decorazioni": ["logo Lakers", "NBA"],
+    "prezzo": 19.99,
+    "immagine": "img/tazza.jpg"
+  }
+]

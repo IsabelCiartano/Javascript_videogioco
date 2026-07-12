@@ -1,0 +1,37 @@
+{
+    "nome": "Nome biblioteca",
+    "indirizzo": "Via roma",
+    "prodotti": [
+        {
+            "instanceOF": "Libro",
+            "titolo": "Harry Potter",
+            "autore": "JK Rowling", 
+            "genere": "fantasy",
+            "anno": 1990,
+            "ISBN": "ISBN",
+            "prestito": [
+                {
+                "dataInizio": "10-05-2000",
+                "dataFine": "10-05-2010",
+                "nomeUtente": "ciartano isabel"
+            },
+            {
+                "dataInizio": "10-05-2000",
+                "dataFine": "10-05-2010",
+                "nomeUtente": "mario rossi"
+            }
+
+        ]
+        },
+
+        {
+            "instanceOF": "Rivista",
+            "titolo": "Titolo2",
+            "periodicità": "settimanale", 
+            "numero": "2",
+            "anno": 2010,
+            "ISBN": "ISBN2",
+            "prestito": []
+        }
+    ]
+}

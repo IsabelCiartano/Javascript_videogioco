@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "nome": "Rock Classics",
+    "autore": "Mario",
+    "canzoni": [
+      { "titolo": "Bohemian Rhapsody", "artista": "Queen",        "anno": 1975 },
+      { "titolo": "Hotel California",  "artista": "Eagles",       "anno": 1977 },
+      { "titolo": "Stairway to Heaven","artista": "Led Zeppelin", "anno": 1971 }
+    ]
+  },
+  {
+    "id": "2",
+    "nome": "Pop Hits 2020",
+    "autore": "Giulia",
+    "canzoni": [
+      { "titolo": "Blinding Lights", "artista": "The Weeknd", "anno": 2019 },
+      { "titolo": "Levitating",      "artista": "Dua Lipa",   "anno": 2020 }
+    ]
+  },
+  {
+    "id": "3",
+    "nome": "Studiare in pace",
+    "autore": "Marco",
+    "canzoni": []
+  }
+]

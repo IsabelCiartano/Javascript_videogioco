@@ -6,9 +6,6 @@
     <title>cocktail</title>
 </head>
 <body>
-    <header>
-
-    </header>
         <style>
         #risultati{
             display:flex;
@@ -35,17 +32,32 @@
         <label>Cocktail:</label>
             <input type="text" id="cocktail"><br>
             <button id="button">Cerca</button>
-            <div id="risultati">
-              
-    </div>  
+            <div id="risultati"></div>  
+            <table id="carrello"> </table>
             
         </form>
     </section>
 
  <script>
+    //creo il carrello css di lato quando clicco sul bottone aggiungi inserisco nel carrello il cocktail 
+    //creo un array con gli id dei cocktail aggiunti e poi lo scorro e stampo 
+    //se ce già aggiungo una quantita 
+    //oggetto con id quantita nome .... 
+    // non stampo solo la modifica ma tutto l'array di carrello quando aggiungo 
+    
+//pseudo codice 
+    //if (id in array){quantità+=1 }else{array.push(oggetto)}
+    //html pulisco il carrello =""
+    //ristampo tutto l'array function stampa()
+    //gestione come una tabella 
+
+
+
 const cocktail = document.getElementById("cocktail");
 const cerca = document.getElementById("button");
-const div =document.getElementById("risultati")
+const div =document.getElementById("risultati");
+const tabella=document.getElementById("carrello");
+let array=[]
 
 function creaCardCocktail(cocktail) {
     const card = document.createElement("div");
@@ -62,12 +74,17 @@ function creaCardCocktail(cocktail) {
     card.appendChild(immagine);
 
     const btn=document.createElement("button");
+    const btn_carrello=document.createElement("button")
     btn.type="button"
+    btn_carrello.type="button"
     btn.id="dettagli"
     btn.textContent="DETTAGLI"
+    btn_carrello.textContent="AGGIUNGI AL CARRELLO"
     const spazio=document.createElement("br")
     card.appendChild(spazio)
     card.appendChild(btn)
+    card.appendChild(btn_carrello);
+   
 
     btn.addEventListener("click",function(){
     const istruzioni = document.createElement("p");
@@ -91,10 +108,48 @@ function creaCardCocktail(cocktail) {
     risultati.appendChild(ingredienti);
     risultati.appendChild(alcolico);
     risultati.appendChild(istruzioni);}
-) 
+)
+    
+    btn_carrello.addEventListener("click",function(){aggiungiCarrello(cocktail,array)});
+
     return card;
 }
 
+function stampaArray(array){
+    tabella.innerHTML=""
+    array.forEach(element=>{
+        const riga=document.createElement("tr");
+
+        const nome=document.createElement("td");
+        nome.textContent=element.nome;
+
+        const quantita=document.createElement("td");
+        quantita.textContent=element.quantita;
+
+        riga.appendChild(nome)
+        riga.appendChild(quantita)
+        tabella.appendChild(riga)
+    })
+    
+
+}
+
+function aggiungiCarrello(cocktail,array){
+    
+    let  esiste=array.find(element=>element.id===cocktail.idDrink);
+    if(esiste){
+        esiste.quantita+=1;
+    }else{
+        array.push({
+            id:cocktail.idDrink,
+            nome:cocktail.strDrink,
+            quantita:1,
+        })
+    }
+
+    stampaArray(array)
+
+}
 cerca.addEventListener("click", function(e) {
     e.preventDefault();
     risultati.innerHTML="";

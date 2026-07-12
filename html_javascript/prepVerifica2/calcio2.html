@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcio 2</title>
+</head>
+
+<body>
+    <style>
+        #articoli {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+    </style>
+    <label>Cosa ti serve?!?! Cerca per materiale (es. poliestere, pelle, gomma...)</label><br>
+    <input type="text" id="materiale">
+    <button id="cerca">CERCA</button>
+    <div id="risultati"></div>
+
+</body>
+<script>
+    const cerca = document.getElementById("cerca")
+    const materiale = document.getElementById("materiale")
+    const ris = document.getElementById("risultati")
+
+    function cardArticolo(art) {
+        const card = document.createElement("div")
+        card.className = "card"
+
+        const nome = document.createElement("h2")
+        nome.textContent = art.nome
+        const desc = document.createElement("p")
+        desc.textContent = art.descrizione_breve
+        const img = document.createElement("img")
+        img.src = art.immagine
+        const pr = document.createElement("h3")
+        pr.textContent = art.prezzo
+
+        card.appendChild(nome)
+        card.appendChild(img)
+        card.appendChild(desc)
+        card.appendChild(pr)
+
+        return card
+    }
+
+    cerca.addEventListener("click", function (e) {
+        ris.innerHTML=""
+        e.preventDefault()
+        let trovati = []
+
+        const URL = "./articoli_calcio.json"
+        fetch(URL)
+            .then(response => response.json())
+            .then(dati => {
+                const datiJson = dati
+                let tro = false
+                trovati = datiJson.filter(el => {
+                    el.materiali.forEach(mat => {
+                        if (mat === materiale.value.toLowerCase()) {
+                            tro = true
+                        }
+                    })
+                    return tro
+                })
+            trovati.forEach(el=>ris.appendChild(cardArticolo(el)))
+            })
+
+    })
+
+
+</script>
+
+</html>

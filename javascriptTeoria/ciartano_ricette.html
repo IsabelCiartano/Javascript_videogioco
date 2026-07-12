@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <title>🍳 Ricettario</title>
+  <link rel="stylesheet" href="stile_ricette.css">
+</head>
+
+<body>
+
+  <h1>🍳 Il mio Ricettario</h1>
+
+  <!-- Toolbar: filtra per categoria | cerca per nome | torna a tutte -->
+  <div id="toolbar">
+    <button id="btn-tutti">✕ Tutte</button>
+    <select id="sel-categoria">
+      <option value="">— Filtra per categoria —</option>
+    </select>
+    <button id="btn-filtra-cat">🔍 Filtra</button>
+
+    <input type="text" id="inp-cerca-nome" placeholder="Cerca per nome...">
+    <button id="btn-cerca-nome">🔍 Cerca</button>
+  </div>
+
+  <div id="box-risultato"></div>
+  <div id="lista-ricette"></div>
+
+
+  <script>
+
+    // ── TASK 1 ──COMPLETA LE PARTI MANCANTI─────────
+    const API_URL = "./ricette.json";
+    
+    const selCategoria = document.getElementById("sel-categoria");
+    caricaSelectCategoria();  // ___DA DEFINIRE SOTTO SE FAI EXTRA
+
+    const lista = document.getElementById("lista-ricette");
+    const box = document.getElementById("box-risultato");
+    const btnTutti = document.getElementById("btn-tutti");
+    const btnFiltraCat = document.getElementById("btn-filtra-cat");
+    const btnCercaNome = document.getElementById("btn-cerca-nome");
+
+    btnTutti.addEventListener("click", () => {
+      document.getElementById("sel-categoria").value = "";
+      document.getElementById("inp-cerca-nome").value = "";
+      caricaRicette();  // da definire sotto
+    });
+
+    btnFiltraCat.addEventListener("click", () => {
+      const cat = document.getElementById("sel-categoria").value;
+      // _______COMPLETA se non ha selezionato nessuna categoria fa un alert
+      if(!cat){
+        alert("seleziona un categoria prima!")
+        return
+      }
+      filtraPerCategoria(cat); // da definire sotto
+    });
+
+    btnCercaNome.addEventListener("click", () => {
+      const nome = document.getElementById("inp-cerca-nome").value.trim();
+      // _______COMPLETA se non ha inserito nessun nome fa un alert
+      if(!nome){
+        alert("inserire un noime da ricercare!")
+        return
+      }
+
+      cercaRicetta(nome); // da definire sotto
+    });
+
+
+    function mostraRicette(ricette) {
+      // Pulisce la lista e il box 
+      lista.innerHTML=""
+      box.innerHTML=""
+
+
+      // Se l'array è vuoto, mostra un messaggio "Nessuna ricetta trovata!" 
+      if(ricette.length ==0){
+        alert("nessuna ricetta trovata!") 
+        return;
+      }
+       
+      // altrimenti mostra le ricette passate come argomento.
+      //OGNI RICETTA è IN UN DIV DI CLASSE "card" con nome, categoria, difficolta, ⏱ tempo_min
+      ricette.forEach(ricetta=>{
+        const card=document.createElement("div")
+        card.className="card"
+
+        const nome=document.createElement("h2")
+        nome.textContent=ricetta.nome
+        const categoria=document.createElement("h3")
+        categoria.textContent=ricetta.categoria
+        const info=document.createElement("p")
+        info.textContent="difficolta : "+ ricetta.info.difficolta +" tempo: " + ricetta.info.tempo_min
+
+        card.appendChild(nome)
+        card.appendChild(categoria)
+        card.appendChild(info)
+        lista.appendChild(card)
+      })
+
+    }
+
+
+    // ── TASK 2 — caricaRicette() ──────────────────────────────────────
+    // GET → chiama mostraRicette() 
+
+    function caricaRicette() {
+      lista.innerHTML = '<p class="msg">Caricamento...</p>';
+      fetch(API_URL)
+      .then(response=>response.json())
+      .then(dati=>{
+        mostraRicette(dati)
+      })
+    }
+
+
+    // ── TASK 3 — filtraPerCategoria(categoria) ────────────────────────
+    // GET → Chiama mostraRicette() con i risultati filtrati con  filter().
+    function filtraPerCategoria(cat) {
+      let categorie_ricercata=[]
+      fetch(API_URL,{method:"GET"})
+      .then(response=>response.json())
+      .then(dati=>{
+        //console.log(dati)
+        categorie_ricercata=dati.filter(ricetta=>ricetta.categoria.toLowerCase()==cat.toLowerCase())
+        if(categorie_ricercata.length==0){
+          alert("nessuna ricetta per questa categoria")
+          return
+        }
+        mostraRicette(categorie_ricercata)
+      })
+    }
+
+    //EXTRA: MODIFICA la funzione caricaSelectCategoria() affinchè carichi le categorie nel select prelevandole dal JSON
+    function caricaSelectCategoria() {
+      // SE FAI EXTRA Sostituisci L'ARRAY DI STRINGHE con le categorie uniche ottenute dal JSON
+      // SE NO NON MODIFICARE IL CODICE SOTTO
+      const categorie = ['Primo', 'Dolce', 'Pizza', 'Condimento']; 
+
+      const selCategoria = document.getElementById("sel-categoria");
+      categorie.forEach(c => {
+        const option = document.createElement("option");
+        option.value = c;
+        option.textContent = c.charAt(0).toUpperCase() + c.slice(1);
+        selCategoria.appendChild(option);
+      });
+    }
+
+    // ── TASK 4 — cercaRicetta(nome) ───────────────────────────────────
+    // GET → usa find() sull'array per nome (case-insensitive).
+    //
+    // Se TROVATA: rendi visibile #box-risultato e riempilo con:
+    //   - nome, categoria, difficolta, tempo_min della ricetta
+    //   - join() o foreach() sugli ingredienti → stringa "pasta, uova, ..."
+    //   - map() o foreach() sui passaggi → lista <ol> di passi
+    //   - bottone ELIMINA che chiama eliminaRicetta()
+    //
+    // Se NON TROVATA: mostra un messaggio nel box.
+    function cercaRicetta(nomeCercato) {
+      box.style.display="block"
+      fetch(API_URL,{method:"GET"})
+      .then(response=>response.json())
+      .then(dati=>{
+        //console.log(dati)
+        let trovato=dati.find(ricetta=>ricetta.nome.toLowerCase()==nomeCercato.toLowerCase())
+        if(!trovato){
+          alert("nessuna ricetta con questo nome")
+          return
+        }
+        const nome=document.createElement("h2")
+        nome.textContent=trovato.nome
+        const categoria=document.createElement("h3")
+        categoria.textContent=trovato.categoria
+        const info=document.createElement("p")
+        info.textContent="difficolta : "+ trovato.info.difficolta +" tempo: " + trovato.info.tempo_min
+        const ingredienti=document.createElement("p")
+        const pass=document.createElement("p")
+        const spazio=document.createElement("br")
+        box.appendChild(nome)
+        box.appendChild(categoria)
+        box.appendChild(info)
+        let ingredient=[]
+        let k=0
+        let passaggi_str=[]
+        let i=0
+        trovato.ingredienti.forEach(ingr=>{
+          ingredient[k]=` ${ingr}`
+          k++
+        })
+        ingredienti.textContent=ingredient
+        box.appendChild(ingredienti)
+        trovato.passaggi.forEach(p=>{
+          passaggi_str[i]= p.ordine +" "+ p.testo
+          i++
+         
+        })
+        pass.textContent=passaggi_str
+        box.appendChild(pass)
+        const btn_elimina=document.createElement("button")
+        btn_elimina.type="button"
+        btn_elimina.textContent="Elimina"
+        box.appendChild(btn_elimina)
+        
+       //btn_elimina.addEventListener("click",eliminaRicetta(trovato.id))
+      btn_elimina.addEventListener("click", () => eliminaRicetta(trovato.id))
+      })
+
+    }
+
+
+    // ── TASK 5 — eliminaRicetta(id) ───────────────────────────────────
+    // USA IN MODO CORRETTO LA FETCH PER LA CHIAMATA API CORRETTA
+    // NASOCNDI LA LISTA E 
+    // NEL #box-risultato MOSTRA MESSAGGIO "Eliminazione in corso..." mentre aspetti la risposta.
+
+   function eliminaRicetta(id) {
+      box.innerHTML=""
+      const canc=document.createElement("div")
+      canc.textContent="cancellazone in corso......"
+      box.appendChild(canc)
+      fetch(API_URL*"/"+id,{method:"DELETE"})
+      .then((r)=>{
+        if(!r.ok){
+        box.innerHTML="ricetta cancellata "}
+      })
+      .catch((err)=>{console.error(err)})
+
+    }
+
+
+  </script>
+</body>
+
+</html>

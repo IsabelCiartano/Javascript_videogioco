@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <title>🎮 La Mia Collezione — DELETE</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1,
+    h2 {
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 12px 0;
+    }
+
+    .genere {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .errore {
+      color: red;
+    }
+
+    #form-aggiungi {
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    #form-aggiungi input {
+      display: block;
+      width: 100%;
+      margin: 6px 0;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    #form-aggiungi button {
+      margin-top: 8px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+
+    .btn-elimina {
+      padding: 4px 10px;
+      background: #fee;
+      border: 1px solid #fcc;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #c00;
+    }
+
+    .btn-elimina:hover {
+      background: #fcc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🎮 La Mia Collezione</h1>
+
+  <button id="aggiorna">LISTA</button>
+  <button id="ricerca">RICERCA</button>
+  <button id="aggiungi">AGGIUNGI</button>
+
+  <div id="form-aggiungi" style="display: none;">
+    <h2>Aggiungi un gioco</h2>
+    <input type="text" id="inp-titolo" placeholder="Titolo">
+    <input type="text" id="inp-genere" placeholder="Genere">
+    <input type="number" id="inp-anno" placeholder="Anno" min="1970" max="2030">
+    <button id="btn-aggiungi">+ Aggiungi</button>
+  </div>
+
+  <div id="lista-giochi"></div>
+
+  <script>
+    const API_URL = "https://69f9a3b3c509a40d3aa2e0a6.mockapi.io/api/v1/videogiochi";
+
+    const lista = document.getElementById("lista-giochi");
+
+    // Aggiungi un bottone "Elimina" nella card.
+    // Quando viene cliccato deve chiamare eliminaGioco(gioco.id).
+    // Ricorda: aggancia l'evento DOPO aver creato il innerHTML,
+    // usando card.querySelector(".btn-elimina").addEventListener(...)
+
+    function creaCardGioco(gioco) {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML = `
+        <h3>${gioco.titolo}</h3>
+        <p class="genere">${gioco.genere} — ${gioco.anno}</p>
+        <button class="btn-elimina">ELIMINA</button>
+      `;
+      card.querySelector(".btn-elimina").addEventListener("click", () => {//va a prendere un selettore css come per esempio class che viene preso come .nomeclass
+        eliminaGioco(gioco.id)//richiamare funzione elimina 
+      })
+
+      // usa class e non id per il bottone perché ce ne sarà uno per ogni gioco, 
+      // e gli id devono essere unici nella pagina
+      // potresti usare id="elimina-${gioco.id}" ma è più semplice usare una classe 
+      // e cercare il bottone all'interno della card
+
+      // Aggancia l'evento DOPO aver creato il innerHTML perché altrimenti 
+      // il bottone non esiste ancora nel DOM e querySelector(".btn-elimina") restituirebbe null
+      // uso card.querySelector per cercare il bottone all'interno della card appena creata
+      // e non document.querySelector che cercherebbe il primo bottone in assoluto nella pagina
+
+      // TODO: aggancia l'evento click sul bottone .btn-elimina
+
+      return card;
+    }
+
+    function mostraGiochi(giochi) {
+      lista.innerHTML = "";
+      giochi.forEach((gioco) => lista.appendChild(creaCardGioco(gioco)));
+    }
+
+    function caricaGiochi() {
+      //nasconde eventuali form presenti
+      nascondiFormNuovo();
+
+      lista.innerHTML = "<p>Caricamento...</p>";
+      fetch(API_URL)
+        .then((risposta) => {
+          if (!risposta.ok) throw new Error("Errore HTTP: " + risposta.status);
+          return risposta.json();
+        })
+        .then((giochi) => mostraGiochi(giochi))
+        .catch((errore) => {
+          lista.innerHTML = "<p class='errore'>Errore nel caricamento</p>";
+          console.error(errore.message, errore);
+        });
+    }
+
+    const bottoneLista = document.getElementById("aggiorna");
+    bottoneLista.addEventListener("click", () =>
+      caricaGiochi());
+
+    const bottoneCerca = document.getElementById("ricerca");
+    bottoneCerca.addEventListener("click", () => {
+      //nasconde eventuali form presenti
+      nascondiFormNuovo();
+      mostraFormRicercaAPI();
+    });
+
+
+    function mostraFormRicerca() {
+
+      lista.innerHTML = `
+          <input type="text" id="input-ricerca" placeholder="Titolo o genere...">
+          <button id="cerca-gioco">CERCA</button>
+        `;
+      // aggiungi event listener al nuovo bottone di ricerca
+      const bottoneCercaGioco = document.getElementById("cerca-gioco");
+      bottoneCercaGioco.addEventListener("click", () => {
+        const query = document.getElementById("input-ricerca").value.toLowerCase();
+        fetch(API_URL)
+          .then((risposta) => {
+            if (!risposta.ok) {
+              throw new Error("Errore HTTP: " + risposta.status);
+            }
+            return risposta.json();
+          })
+          .then((data) => {
+            const risultati = data.filter((gioco) =>
+              gioco.titolo.toLowerCase().includes(query) ||
+              gioco.genere.toLowerCase().includes(query)
+            );
+            if (risultati.length === 0) {
+              lista.innerHTML = "<p class='errore'>Nessun gioco trovato.</p>";
+            } else
+              mostraGiochi(risultati);
+          })
+          .catch((errore) => {
+            lista.innerHTML = "<p class='errore'>Errore nel caricamento</p>";
+            console.error(errore.message, errore);
+          });
+      });
+    }
+
+
+    function mostraFormRicercaAPI() {
+
+      lista.innerHTML = `
+          <input type="text" id="input-ricerca" placeholder="Titolo o genere...">
+          <button id="cerca-gioco">CERCA</button>
+        `;
+      // aggiungi event listener al nuovo bottone di ricerca
+      const bottoneCercaGioco = document.getElementById("cerca-gioco");
+      bottoneCercaGioco.addEventListener("click", () => {
+        const query = document.getElementById("input-ricerca").value.toLowerCase();
+        fetch(API_URL + "?titolo=" + query)
+          .then((risposta) => {
+            if (!risposta.ok) {
+              throw new Error("Errore HTTP: " + risposta.status);
+            }
+            return risposta.json();
+          })
+          .then((data) => {
+            mostraGiochi(data);
+          })
+          .catch((errore) => {
+            lista.innerHTML = "<p class='errore'>ERRORE:gioco non trovato </p>";
+            console.error(errore.message, errore);
+          });
+      });
+    }
+
+    function mostraFormNuovo() {
+      lista.innerHTML = "";
+
+      document.getElementById("inp-titolo").value = "";
+      document.getElementById("inp-genere").value = "";
+      document.getElementById("inp-anno").value = "";
+      document.getElementById("form-aggiungi").style.display = "block";
+
+    }
+
+    function nascondiFormNuovo() {
+      lista.innerHTML = "";
+      document.getElementById("form-aggiungi").style.display = "none";
+    }
+
+    const bottoneAggiungi = document.getElementById("aggiungi");
+    bottoneAggiungi.addEventListener("click", () =>
+      mostraFormNuovo());
+
+    function aggiungiGioco(nuovoGioco) {
+      fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }, // obbligatorio!
+        body: JSON.stringify(nuovoGioco)               // oggetto → stringa JSON
+      })
+        .then((risposta) => {
+          if (!risposta.ok) throw new Error("Errore HTTP: " + risposta.status);
+          return risposta.json();             // MockAPI risponde con il gioco + id assegnato
+        })
+        .then((giocoCreato) => {
+          nascondiFormNuovo();
+          lista.innerHTML = "Gioco aggiunto con successo!";
+          console.log("Creato:", giocoCreato);
+        })
+        .catch((errore) => {
+          console.error("Errore nella creazione:", errore.message, errore);
+        });
+    }
+
+    document.getElementById("btn-aggiungi").addEventListener("click", () => {
+      const titolo = document.getElementById("inp-titolo").value.trim();
+      const genere = document.getElementById("inp-genere").value.trim();
+      const anno = parseInt(document.getElementById("inp-anno").value);
+
+      if (!titolo || !genere || isNaN(anno)) {
+        alert("Compila tutti i campi!");
+        return;
+      }
+
+      aggiungiGioco({ titolo, genere, anno }); // l'id lo assegna MockAPI
+
+    });
+
+    // ── TODO 2: implementa eliminaGioco(id) ──────────────────
+    // Deve:
+    //   a) chiedere conferma con confirm()
+    //   b) chiamare fetch(API_URL + "/" + id, { method: "DELETE" })
+    //   c) nel .then() controllare risposta.ok, poi ricare la lista
+    //   d) nel .catch() loggare l'errore
+
+    function eliminaGioco(id) {
+     if(!confirm("swi ciscuro di eliminare?")){
+      return;
+     }
+      fetch(API_URL + "/" + id, {
+        // Supponiamo di eliminare il record con ID 1
+        method: 'DELETE'})
+        .then(response => {
+
+          if (!response.ok) {
+            throw new Error('Errore nella cancellazione');
+          }
+          console.log("eliminato gioco con id : " + id)
+        })
+        .catch(error => console.error('Errore:', error));
+    }
+  </script>
+
+</body>
+
+</html>

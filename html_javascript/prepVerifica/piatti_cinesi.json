@@ -1,0 +1,657 @@
+[
+  {
+    "id": 1,
+    "nome": "Involtini Primavera",
+    "descrizione": "Involtini Primavera preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Involtini Primavera tipico della cucina cinese.",
+    "immagine": "https://example.com/involtini_primavera.jpg",
+    "tipo_piatto": "antipasto",
+    "ingredienti": [
+      "uovo",
+      "maiale",
+      "carote",
+      "aglio",
+      "spaghetti"
+    ],
+    "prezzo": 8.41
+  },
+  {
+    "id": 2,
+    "nome": "Ravioli al Vapore",
+    "descrizione": "Ravioli al Vapore preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Ravioli al Vapore tipico della cucina cinese.",
+    "immagine": "https://example.com/ravioli_al_vapore.jpg",
+    "tipo_piatto": "primopiatto",
+    "ingredienti": [
+      "carote",
+      "zenzero",
+      "manzo",
+      "spaghetti",
+      "sesamo",
+      "peperoni",
+      "bambù"
+    ],
+    "prezzo": 9.05
+  },
+  {
+    "id": 3,
+    "nome": "Zuppa Agro Piccante",
+    "descrizione": "Zuppa Agro Piccante preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Zuppa Agro Piccante tipico della cucina cinese.",
+    "immagine": "https://example.com/zuppa_agro_piccante.jpg",
+    "tipo_piatto": "secondopiatto",
+    "ingredienti": [
+      "peperoni",
+      "cipollotto",
+      "aglio",
+      "maiale",
+      "funghi"
+    ],
+    "prezzo": 11.17
+  },
+  {
+    "id": 4,
+    "nome": "Spaghetti di Soia con Verdure",
+    "descrizione": "Spaghetti di Soia con Verdure preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Spaghetti di Soia con Verdure tipico della cucina cinese.",
+    "immagine": "https://example.com/spaghetti_di_soia_con_verdure.jpg",
+    "tipo_piatto": "contorno",
+    "ingredienti": [
+      "zenzero",
+      "sesamo",
+      "tofu",
+      "carote",
+      "spaghetti",
+      "gamberi"
+    ],
+    "prezzo": 9.78
+  },
+  {
+    "id": 5,
+    "nome": "Anatra alla Pechinese",
+    "descrizione": "Anatra alla Pechinese preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Anatra alla Pechinese tipico della cucina cinese.",
+    "immagine": "https://example.com/anatra_alla_pechinese.jpg",
+    "tipo_piatto": "dolce",
+    "ingredienti": [
+      "uovo",
+      "maiale",
+      "aglio",
+      "zucchine"
+    ],
+    "prezzo": 9.91
+  },
+  {
+    "id": 6,
+    "nome": "Pollo alle Mandorle",
+    "descrizione": "Pollo alle Mandorle preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Pollo alle Mandorle tipico della cucina cinese.",
+    "immagine": "https://example.com/pollo_alle_mandorle.jpg",
+    "tipo_piatto": "antipasto",
+    "ingredienti": [
+      "tofu",
+      "riso",
+      "manzo",
+      "maiale",
+      "olio di sesamo",
+      "zenzero"
+    ],
+    "prezzo": 9.96
+  },
+  {
+    "id": 7,
+    "nome": "Manzo con Funghi",
+    "descrizione": "Manzo con Funghi preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Manzo con Funghi tipico della cucina cinese.",
+    "immagine": "https://example.com/manzo_con_funghi.jpg",
+    "tipo_piatto": "primopiatto",
+    "ingredienti": [
+      "tofu",
+      "anatra",
+      "gamberi",
+      "maiale"
+    ],
+    "prezzo": 5.97
+  },
+  {
+    "id": 8,
+    "nome": "Riso alla Cantonese",
+    "descrizione": "Riso alla Cantonese preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Riso alla Cantonese tipico della cucina cinese.",
+    "immagine": "https://example.com/riso_alla_cantonese.jpg",
+    "tipo_piatto": "secondopiatto",
+    "ingredienti": [
+      "riso",
+      "olio di sesamo",
+      "spaghetti",
+      "pollo"
+    ],
+    "prezzo": 14.45
+  },
+  {
+    "id": 9,
+    "nome": "Gamberi in Salsa Piccante",
+    "descrizione": "Gamberi in Salsa Piccante preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Gamberi in Salsa Piccante tipico della cucina cinese.",
+    "immagine": "https://example.com/gamberi_in_salsa_piccante.jpg",
+    "tipo_piatto": "contorno",
+    "ingredienti": [
+      "peperoni",
+      "bambù",
+      "funghi",
+      "spaghetti"
+    ],
+    "prezzo": 12.2
+  },
+  {
+    "id": 10,
+    "nome": "Tofu Mapo",
+    "descrizione": "Tofu Mapo preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Tofu Mapo tipico della cucina cinese.",
+    "immagine": "https://example.com/tofu_mapo.jpg",
+    "tipo_piatto": "dolce",
+    "ingredienti": [
+      "sesamo",
+      "tofu",
+      "anatra",
+      "spaghetti",
+      "peperoni",
+      "funghi"
+    ],
+    "prezzo": 7.62
+  },
+  {
+    "id": 11,
+    "nome": "Zuppa di Wonton",
+    "descrizione": "Zuppa di Wonton preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Zuppa di Wonton tipico della cucina cinese.",
+    "immagine": "https://example.com/zuppa_di_wonton.jpg",
+    "tipo_piatto": "antipasto",
+    "ingredienti": [
+      "soia",
+      "spaghetti",
+      "peperoni",
+      "riso",
+      "sesamo"
+    ],
+    "prezzo": 4.79
+  },
+  {
+    "id": 12,
+    "nome": "Maiale in Agrodolce",
+    "descrizione": "Maiale in Agrodolce preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Maiale in Agrodolce tipico della cucina cinese.",
+    "immagine": "https://example.com/maiale_in_agrodolce.jpg",
+    "tipo_piatto": "primopiatto",
+    "ingredienti": [
+      "olio di sesamo",
+      "bambù",
+      "anatra",
+      "pollo",
+      "riso",
+      "cipollotto"
+    ],
+    "prezzo": 6.47
+  },
+  {
+    "id": 13,
+    "nome": "Ravioli alla Griglia",
+    "descrizione": "Ravioli alla Griglia preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Ravioli alla Griglia tipico della cucina cinese.",
+    "immagine": "https://example.com/ravioli_alla_griglia.jpg",
+    "tipo_piatto": "secondopiatto",
+    "ingredienti": [
+      "zucchine",
+      "cipollotto",
+      "maiale",
+      "anatra",
+      "funghi",
+      "sesamo",
+      "aglio"
+    ],
+    "prezzo": 14.26
+  },
+  {
+    "id": 14,
+    "nome": "Anatra Croccante al Sesamo",
+    "descrizione": "Anatra Croccante al Sesamo preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Anatra Croccante al Sesamo tipico della cucina cinese.",
+    "immagine": "https://example.com/anatra_croccante_al_sesamo.jpg",
+    "tipo_piatto": "contorno",
+    "ingredienti": [
+      "olio di sesamo",
+      "anatra",
+      "zucchine",
+      "soia"
+    ],
+    "prezzo": 13.34
+  },
+  {
+    "id": 15,
+    "nome": "Spaghetti di Riso con Gamberi",
+    "descrizione": "Spaghetti di Riso con Gamberi preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Spaghetti di Riso con Gamberi tipico della cucina cinese.",
+    "immagine": "https://example.com/spaghetti_di_riso_con_gamberi.jpg",
+    "tipo_piatto": "dolce",
+    "ingredienti": [
+      "manzo",
+      "aglio",
+      "anatra",
+      "peperoni",
+      "funghi",
+      "tofu"
+    ],
+    "prezzo": 11.1
+  },
+  {
+    "id": 16,
+    "nome": "Verdure Saltate",
+    "descrizione": "Verdure Saltate preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Verdure Saltate tipico della cucina cinese.",
+    "immagine": "https://example.com/verdure_saltate.jpg",
+    "tipo_piatto": "antipasto",
+    "ingredienti": [
+      "uovo",
+      "anatra",
+      "aglio",
+      "bambù",
+      "cipollotto"
+    ],
+    "prezzo": 13.4
+  },
+  {
+    "id": 17,
+    "nome": "Involtini di Gamberi",
+    "descrizione": "Involtini di Gamberi preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Involtini di Gamberi tipico della cucina cinese.",
+    "immagine": "https://example.com/involtini_di_gamberi.jpg",
+    "tipo_piatto": "primopiatto",
+    "ingredienti": [
+      "riso",
+      "soia",
+      "anatra",
+      "zucchine",
+      "tofu",
+      "manzo",
+      "carote"
+    ],
+    "prezzo": 12.42
+  },
+  {
+    "id": 18,
+    "nome": "Maiale alle Cinque Spezie",
+    "descrizione": "Maiale alle Cinque Spezie preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Maiale alle Cinque Spezie tipico della cucina cinese.",
+    "immagine": "https://example.com/maiale_alle_cinque_spezie.jpg",
+    "tipo_piatto": "secondopiatto",
+    "ingredienti": [
+      "carote",
+      "pollo",
+      "sesamo",
+      "tofu",
+      "peperoni",
+      "spaghetti",
+      "zenzero"
+    ],
+    "prezzo": 13.82
+  },
+  {
+    "id": 19,
+    "nome": "Riso al Vapore",
+    "descrizione": "Riso al Vapore preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Riso al Vapore tipico della cucina cinese.",
+    "immagine": "https://example.com/riso_al_vapore.jpg",
+    "tipo_piatto": "contorno",
+    "ingredienti": [
+      "cipollotto",
+      "bambù",
+      "tofu",
+      "aglio",
+      "peperoni",
+      "uovo"
+    ],
+    "prezzo": 13.61
+  },
+  {
+    "id": 20,
+    "nome": "Melanzane in Salsa di Aglio",
+    "descrizione": "Melanzane in Salsa di Aglio preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Melanzane in Salsa di Aglio tipico della cucina cinese.",
+    "immagine": "https://example.com/melanzane_in_salsa_di_aglio.jpg",
+    "tipo_piatto": "dolce",
+    "ingredienti": [
+      "riso",
+      "sesamo",
+      "bambù",
+      "gamberi",
+      "pollo",
+      "soia",
+      "cipollotto"
+    ],
+    "prezzo": 13.57
+  },
+  {
+    "id": 21,
+    "nome": "Pollo in Salsa di Soia",
+    "descrizione": "Pollo in Salsa di Soia preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Pollo in Salsa di Soia tipico della cucina cinese.",
+    "immagine": "https://example.com/pollo_in_salsa_di_soia.jpg",
+    "tipo_piatto": "antipasto",
+    "ingredienti": [
+      "carote",
+      "soia",
+      "funghi",
+      "tofu"
+    ],
+    "prezzo": 14.87
+  },
+  {
+    "id": 22,
+    "nome": "Spaghetti con Anatra",
+    "descrizione": "Spaghetti con Anatra preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Spaghetti con Anatra tipico della cucina cinese.",
+    "immagine": "https://example.com/spaghetti_con_anatra.jpg",
+    "tipo_piatto": "primopiatto",
+    "ingredienti": [
+      "bambù",
+      "olio di sesamo",
+      "uovo",
+      "funghi",
+      "maiale"
+    ],
+    "prezzo": 12.94
+  },
+  {
+    "id": 23,
+    "nome": "Insalata di Alga Wakame",
+    "descrizione": "Insalata di Alga Wakame preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Insalata di Alga Wakame tipico della cucina cinese.",
+    "immagine": "https://example.com/insalata_di_alga_wakame.jpg",
+    "tipo_piatto": "secondopiatto",
+    "ingredienti": [
+      "bambù",
+      "carote",
+      "sesamo",
+      "funghi"
+    ],
+    "prezzo": 5.94
+  },
+  {
+    "id": 24,
+    "nome": "Pane Cinese al Vapore",
+    "descrizione": "Pane Cinese al Vapore preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Pane Cinese al Vapore tipico della cucina cinese.",
+    "immagine": "https://example.com/pane_cinese_al_vapore.jpg",
+    "tipo_piatto": "contorno",
+    "ingredienti": [
+      "olio di sesamo",
+      "anatra",
+      "pollo",
+      "gamberi"
+    ],
+    "prezzo": 13.99
+  },
+  {
+    "id": 25,
+    "nome": "Gnocchi di Riso Saltati",
+    "descrizione": "Gnocchi di Riso Saltati preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Gnocchi di Riso Saltati tipico della cucina cinese.",
+    "immagine": "https://example.com/gnocchi_di_riso_saltati.jpg",
+    "tipo_piatto": "dolce",
+    "ingredienti": [
+      "olio di sesamo",
+      "maiale",
+      "funghi",
+      "peperoni",
+      "cipollotto",
+      "bambù"
+    ],
+    "prezzo": 10.3
+  },
+  {
+    "id": 26,
+    "nome": "Gamberi con Anacardi",
+    "descrizione": "Gamberi con Anacardi preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Gamberi con Anacardi tipico della cucina cinese.",
+    "immagine": "https://example.com/gamberi_con_anacardi.jpg",
+    "tipo_piatto": "antipasto",
+    "ingredienti": [
+      "anatra",
+      "manzo",
+      "funghi",
+      "riso",
+      "gamberi"
+    ],
+    "prezzo": 6.92
+  },
+  {
+    "id": 27,
+    "nome": "Pollo al Curry Cinese",
+    "descrizione": "Pollo al Curry Cinese preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Pollo al Curry Cinese tipico della cucina cinese.",
+    "immagine": "https://example.com/pollo_al_curry_cinese.jpg",
+    "tipo_piatto": "primopiatto",
+    "ingredienti": [
+      "gamberi",
+      "spaghetti",
+      "zucchine",
+      "tofu",
+      "cipollotto",
+      "funghi"
+    ],
+    "prezzo": 13.98
+  },
+  {
+    "id": 28,
+    "nome": "Tè all'Arancia con Gelsomino",
+    "descrizione": "Tè all'Arancia con Gelsomino preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Tè all'Arancia con Gelsomino tipico della cucina cinese.",
+    "immagine": "https://example.com/tè_all'arancia_con_gelsomino.jpg",
+    "tipo_piatto": "secondopiatto",
+    "ingredienti": [
+      "funghi",
+      "peperoni",
+      "spaghetti",
+      "bambù",
+      "aglio",
+      "cipollotto"
+    ],
+    "prezzo": 7.39
+  },
+  {
+    "id": 29,
+    "nome": "Bocconcini di Pollo Fritto",
+    "descrizione": "Bocconcini di Pollo Fritto preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Bocconcini di Pollo Fritto tipico della cucina cinese.",
+    "immagine": "https://example.com/bocconcini_di_pollo_fritto.jpg",
+    "tipo_piatto": "contorno",
+    "ingredienti": [
+      "spaghetti",
+      "tofu",
+      "bambù",
+      "riso",
+      "cipollotto"
+    ],
+    "prezzo": 8.87
+  },
+  {
+    "id": 30,
+    "nome": "Gamberi al Vapore con Aglio",
+    "descrizione": "Gamberi al Vapore con Aglio preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Gamberi al Vapore con Aglio tipico della cucina cinese.",
+    "immagine": "https://example.com/gamberi_al_vapore_con_aglio.jpg",
+    "tipo_piatto": "dolce",
+    "ingredienti": [
+      "anatra",
+      "spaghetti",
+      "uovo",
+      "olio di sesamo",
+      "maiale",
+      "soia",
+      "carote"
+    ],
+    "prezzo": 11.96
+  },
+  {
+    "id": 31,
+    "nome": "Zuppa di Mais e Pollo",
+    "descrizione": "Zuppa di Mais e Pollo preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Zuppa di Mais e Pollo tipico della cucina cinese.",
+    "immagine": "https://example.com/zuppa_di_mais_e_pollo.jpg",
+    "tipo_piatto": "antipasto",
+    "ingredienti": [
+      "manzo",
+      "maiale",
+      "riso",
+      "olio di sesamo",
+      "pollo",
+      "anatra"
+    ],
+    "prezzo": 12.44
+  },
+  {
+    "id": 32,
+    "nome": "Noodles Freddi con Sesamo",
+    "descrizione": "Noodles Freddi con Sesamo preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Noodles Freddi con Sesamo tipico della cucina cinese.",
+    "immagine": "https://example.com/noodles_freddi_con_sesamo.jpg",
+    "tipo_piatto": "primopiatto",
+    "ingredienti": [
+      "bambù",
+      "spaghetti",
+      "soia",
+      "pollo",
+      "maiale",
+      "cipollotto"
+    ],
+    "prezzo": 8.76
+  },
+  {
+    "id": 33,
+    "nome": "Polpette di Gamberi",
+    "descrizione": "Polpette di Gamberi preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Polpette di Gamberi tipico della cucina cinese.",
+    "immagine": "https://example.com/polpette_di_gamberi.jpg",
+    "tipo_piatto": "secondopiatto",
+    "ingredienti": [
+      "pollo",
+      "soia",
+      "bambù",
+      "aglio",
+      "spaghetti",
+      "olio di sesamo"
+    ],
+    "prezzo": 7.17
+  },
+  {
+    "id": 34,
+    "nome": "Pollo Kung Pao",
+    "descrizione": "Pollo Kung Pao preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Pollo Kung Pao tipico della cucina cinese.",
+    "immagine": "https://example.com/pollo_kung_pao.jpg",
+    "tipo_piatto": "contorno",
+    "ingredienti": [
+      "olio di sesamo",
+      "sesamo",
+      "manzo",
+      "zenzero",
+      "uovo"
+    ],
+    "prezzo": 14.36
+  },
+  {
+    "id": 35,
+    "nome": "Patate alla Cinese",
+    "descrizione": "Patate alla Cinese preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Patate alla Cinese tipico della cucina cinese.",
+    "immagine": "https://example.com/patate_alla_cinese.jpg",
+    "tipo_piatto": "dolce",
+    "ingredienti": [
+      "peperoni",
+      "spaghetti",
+      "uovo",
+      "cipollotto"
+    ],
+    "prezzo": 5.89
+  },
+  {
+    "id": 36,
+    "nome": "Torta di Luna",
+    "descrizione": "Torta di Luna preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Torta di Luna tipico della cucina cinese.",
+    "immagine": "https://example.com/torta_di_luna.jpg",
+    "tipo_piatto": "antipasto",
+    "ingredienti": [
+      "riso",
+      "funghi",
+      "anatra",
+      "aglio",
+      "soia"
+    ],
+    "prezzo": 12.16
+  },
+  {
+    "id": 37,
+    "nome": "Dolcetti di Sesamo",
+    "descrizione": "Dolcetti di Sesamo preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Dolcetti di Sesamo tipico della cucina cinese.",
+    "immagine": "https://example.com/dolcetti_di_sesamo.jpg",
+    "tipo_piatto": "primopiatto",
+    "ingredienti": [
+      "sesamo",
+      "zucchine",
+      "bambù",
+      "zenzero"
+    ],
+    "prezzo": 12.93
+  },
+  {
+    "id": 38,
+    "nome": "Gelatina di Fagioli Rossi",
+    "descrizione": "Gelatina di Fagioli Rossi preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Gelatina di Fagioli Rossi tipico della cucina cinese.",
+    "immagine": "https://example.com/gelatina_di_fagioli_rossi.jpg",
+    "tipo_piatto": "secondopiatto",
+    "ingredienti": [
+      "pollo",
+      "zenzero",
+      "zucchine",
+      "aglio",
+      "riso",
+      "sesamo"
+    ],
+    "prezzo": 9.5
+  },
+  {
+    "id": 39,
+    "nome": "Frutta Caramellata",
+    "descrizione": "Frutta Caramellata preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Frutta Caramellata tipico della cucina cinese.",
+    "immagine": "https://example.com/frutta_caramellata.jpg",
+    "tipo_piatto": "contorno",
+    "ingredienti": [
+      "zucchine",
+      "tofu",
+      "sesamo",
+      "maiale",
+      "manzo"
+    ],
+    "prezzo": 10.36
+  },
+  {
+    "id": 40,
+    "nome": "Gelato al Tè Verde",
+    "descrizione": "Gelato al Tè Verde preparato secondo la tradizione cinese, con ingredienti freschi e saporiti.",
+    "descrizione_breve": "Gelato al Tè Verde tipico della cucina cinese.",
+    "immagine": "https://example.com/gelato_al_tè_verde.jpg",
+    "tipo_piatto": "dolce",
+    "ingredienti": [
+      "olio di sesamo",
+      "bambù",
+      "anatra",
+      "carote",
+      "pollo"
+    ],
+    "prezzo": 11.08
+  }
+]

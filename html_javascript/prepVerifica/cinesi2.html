@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinesi 2</title>
+</head>
+
+<body>
+    <style>
+        #piatti {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+    </style>
+    <label>Che cosa ti ispira ?</label><br>
+    <input type="text" id="ingrediente">
+    <button id="button">Cerca</button><br>
+    <div id="risultati"></div>
+
+
+
+
+</body>
+<script>
+
+    const btn = document.getElementById("button")
+    const ingrediente = document.getElementById("ingrediente")
+    const ris = document.getElementById("risultati")
+
+
+function mostraPiatti(piatto) {
+
+        const card = document.createElement("div")
+        card.className = "card"
+
+        const nome = document.createElement("h2");
+        nome.textContent = piatto.nome;
+
+        const desc = document.createElement("p");
+        desc.textContent = piatto.descrizione_breve;
+
+        const prezzo = document.createElement("p");
+        prezzo.textContent = piatto.prezzo;
+
+        const img = document.createElement("img");
+        img.src = piatto.immagine
+
+        card.appendChild(nome)
+        card.appendChild(img)
+        card.appendChild(desc)
+        card.appendChild(prezzo)
+        return card
+    }
+
+btn.addEventListener("click", function (e) {
+        e.preventDefault
+        ris.innerHTML=""
+        let trovati = []
+        const url = "./piatti_cinesi.json"
+        fetch(url)
+            .then(response => response.json())
+            .then(dati => {
+                const datiJson = dati;
+                console.log(datiJson);
+
+                let tro = false
+                trovati = datiJson.filter(el => {
+                    el.ingredienti.forEach(ingr => {
+                        if (ingr === ingrediente.value.toLowerCase()) {
+                            tro = true
+                        }
+                    })
+                    return tro
+                })
+                trovati.forEach(el => ris.appendChild(mostraPiatti(el)))
+            })
+    })
+
+
+
+</script>
+
+</html>

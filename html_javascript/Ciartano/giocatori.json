@@ -1,0 +1,624 @@
+{
+  "campionatoSerieA": [
+    {
+      "id": 1,
+      "nome": "Lorenzo",
+      "cognome": "Modric",
+      "foto": "https://example.com/foto/lorenzo_modric.jpg",
+      "ruolo": "Centrocampista",
+      "anno_nascita": 2006,
+      "nazionalita": "Olandese",
+      "squadra_attuale": "Bologna",
+      "valore_market_euro": 513955,
+      "gol_attuali": 2,
+      "assist_attuali": 6,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Juventus",
+          "gol": 21,
+          "assist": 3
+        },
+        {
+          "squadra": "Fiorentina",
+          "gol": 27,
+          "assist": 18
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "Tommaso",
+      "cognome": "Garcia",
+      "foto": "https://example.com/foto/tommaso_garcia.jpg",
+      "ruolo": "Attaccante",
+      "anno_nascita": 2007,
+      "nazionalita": "Portoghese",
+      "squadra_attuale": "Juventus",
+      "valore_market_euro": 466484,
+      "gol_attuali": 11,
+      "assist_attuali": 0,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Roma",
+          "gol": 7,
+          "assist": 4
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nome": "Marcus",
+      "cognome": "Smith",
+      "foto": "https://example.com/foto/marcus_smith.jpg",
+      "ruolo": "Attaccante",
+      "anno_nascita": 2005,
+      "nazionalita": "Croata",
+      "squadra_attuale": "Juventus",
+      "valore_market_euro": 514436,
+      "gol_attuali": 13,
+      "assist_attuali": 1,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Inter",
+          "gol": 16,
+          "assist": 1
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "nome": "Samuel",
+      "cognome": "Conti",
+      "foto": "https://example.com/foto/samuel_conti.jpg",
+      "ruolo": "Centrocampista",
+      "anno_nascita": 2006,
+      "nazionalita": "Italiana",
+      "squadra_attuale": "Fiorentina",
+      "valore_market_euro": 156941,
+      "gol_attuali": 4,
+      "assist_attuali": 4,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Milan",
+          "gol": 3,
+          "assist": 0
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "nome": "Mattia",
+      "cognome": "Fontana",
+      "foto": "https://example.com/foto/mattia_fontana.jpg",
+      "ruolo": "Difensore",
+      "anno_nascita": 2006,
+      "nazionalita": "Inglese",
+      "squadra_attuale": "Verona",
+      "valore_market_euro": 497895,
+      "gol_attuali": 1,
+      "assist_attuali": 2,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Lazio",
+          "gol": 2,
+          "assist": 5
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "nome": "Jan",
+      "cognome": "Romano",
+      "foto": "https://example.com/foto/jan_romano.jpg",
+      "ruolo": "Centrocampista",
+      "anno_nascita": 2008,
+      "nazionalita": "Francese",
+      "squadra_attuale": "Udinese",
+      "valore_market_euro": 455814,
+      "gol_attuali": 0,
+      "assist_attuali": 8,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Napoli",
+          "gol": 5,
+          "assist": 7
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "nome": "Gabriele",
+      "cognome": "Jones",
+      "foto": "https://example.com/foto/gabriele_jones.jpg",
+      "ruolo": "Portiere",
+      "anno_nascita": 1993,
+      "nazionalita": "Francese",
+      "squadra_attuale": "Milan",
+      "valore_market_euro": 74312314,
+      "gol_attuali": 0,
+      "assist_attuali": 0,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Napoli",
+          "gol": 0,
+          "assist": 0
+        },
+        {
+          "squadra": "Roma",
+          "gol": 0,
+          "assist": 1
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "nome": "Edoardo",
+      "cognome": "Ferrari",
+      "foto": "https://example.com/foto/edoardo_ferrari.jpg",
+      "ruolo": "Centrocampista",
+      "anno_nascita": 2001,
+      "nazionalita": "Olandese",
+      "squadra_attuale": "Torino",
+      "valore_market_euro": 73261245,
+      "gol_attuali": 15,
+      "assist_attuali": 0,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Juventus",
+          "gol": 20,
+          "assist": 10
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "nome": "Christian",
+      "cognome": "Novak",
+      "foto": "https://example.com/foto/christian_novak.jpg",
+      "ruolo": "Attaccante",
+      "anno_nascita": 1989,
+      "nazionalita": "Argentina",
+      "squadra_attuale": "Torino",
+      "valore_market_euro": 28982961,
+      "gol_attuali": 6,
+      "assist_attuali": 4,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Roma",
+          "gol": 42,
+          "assist": 20
+        },
+        {
+          "squadra": "Milan",
+          "gol": 31,
+          "assist": 7
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "nome": "Edoardo",
+      "cognome": "Martin",
+      "foto": "https://example.com/foto/edoardo_martin.jpg",
+      "ruolo": "Attaccante",
+      "anno_nascita": 1998,
+      "nazionalita": "Spagnola",
+      "squadra_attuale": "Fiorentina",
+      "valore_market_euro": 72605721,
+      "gol_attuali": 13,
+      "assist_attuali": 2,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Verona",
+          "gol": 22,
+          "assist": 14
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "nome": "Jan",
+      "cognome": "Brown",
+      "foto": "https://example.com/foto/jan_brown.jpg",
+      "ruolo": "Attaccante",
+      "anno_nascita": 1997,
+      "nazionalita": "Croata",
+      "squadra_attuale": "Udinese",
+      "valore_market_euro": 77186885,
+      "gol_attuali": 11,
+      "assist_attuali": 3,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Inter",
+          "gol": 11,
+          "assist": 16
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "nome": "Tommaso",
+      "cognome": "Modric",
+      "foto": "https://example.com/foto/tommaso_modric.jpg",
+      "ruolo": "Difensore",
+      "anno_nascita": 2004,
+      "nazionalita": "Spagnola",
+      "squadra_attuale": "Roma",
+      "valore_market_euro": 74785181,
+      "gol_attuali": 9,
+      "assist_attuali": 1,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Napoli",
+          "gol": 12,
+          "assist": 10
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "nome": "Leonardo",
+      "cognome": "Taylor",
+      "foto": "https://example.com/foto/leonardo_taylor.jpg",
+      "ruolo": "Attaccante",
+      "anno_nascita": 1991,
+      "nazionalita": "Argentina",
+      "squadra_attuale": "Napoli",
+      "valore_market_euro": 59424079,
+      "gol_attuali": 12,
+      "assist_attuali": 1,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Atalanta",
+          "gol": 43,
+          "assist": 20
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "nome": "Alessandro",
+      "cognome": "Russo",
+      "foto": "https://example.com/foto/alessandro_russo.jpg",
+      "ruolo": "Centrocampista",
+      "anno_nascita": 1993,
+      "nazionalita": "Argentina",
+      "squadra_attuale": "Napoli",
+      "valore_market_euro": 49913906,
+      "gol_attuali": 6,
+      "assist_attuali": 4,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Inter",
+          "gol": 3,
+          "assist": 4
+        },
+        {
+          "squadra": "Juventus",
+          "gol": 18,
+          "assist": 18
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "nome": "Luka",
+      "cognome": "Novak",
+      "foto": "https://example.com/foto/luka_novak.jpg",
+      "ruolo": "Attaccante",
+      "anno_nascita": 2002,
+      "nazionalita": "Portoghese",
+      "squadra_attuale": "Lazio",
+      "valore_market_euro": 55626878,
+      "gol_attuali": 15,
+      "assist_attuali": 0,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Atalanta",
+          "gol": 27,
+          "assist": 10
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "nome": "Riccardo",
+      "cognome": "Martin",
+      "foto": "https://example.com/foto/riccardo_martin.jpg",
+      "ruolo": "Centrocampista",
+      "anno_nascita": 2004,
+      "nazionalita": "Portoghese",
+      "squadra_attuale": "Lazio",
+      "valore_market_euro": 3449546,
+      "gol_attuali": 5,
+      "assist_attuali": 9,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Torino",
+          "gol": 12,
+          "assist": 13
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "nome": "Tommaso",
+      "cognome": "Müller",
+      "foto": "https://example.com/foto/tommaso_muller.jpg",
+      "ruolo": "Centrocampista",
+      "anno_nascita": 2003,
+      "nazionalita": "Croata",
+      "squadra_attuale": "Torino",
+      "valore_market_euro": 60326412,
+      "gol_attuali": 5,
+      "assist_attuali": 0,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Bologna",
+          "gol": 5,
+          "assist": 17
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "nome": "Pablo",
+      "cognome": "Costa",
+      "foto": "https://example.com/foto/pablo_costa.jpg",
+      "ruolo": "Attaccante",
+      "anno_nascita": 2000,
+      "nazionalita": "Argentina",
+      "squadra_attuale": "Fiorentina",
+      "valore_market_euro": 62274126,
+      "gol_attuali": 12,
+      "assist_attuali": 9,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Bologna",
+          "gol": 14,
+          "assist": 12
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "nome": "Stefan",
+      "cognome": "Modric",
+      "foto": "https://example.com/foto/stefan_modric.jpg",
+      "ruolo": "Portiere",
+      "anno_nascita": 1990,
+      "nazionalita": "Croata",
+      "squadra_attuale": "Atalanta",
+      "valore_market_euro": 60872722,
+      "gol_attuali": 0,
+      "assist_attuali": 0,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Bologna",
+          "gol": 0,
+          "assist": 0
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "nome": "Mattia",
+      "cognome": "Santos",
+      "foto": "https://example.com/foto/mattia_santos.jpg",
+      "ruolo": "Centrocampista",
+      "anno_nascita": 1994,
+      "nazionalita": "Olandese",
+      "squadra_attuale": "Atalanta",
+      "valore_market_euro": 7927229,
+      "gol_attuali": 2,
+      "assist_attuali": 10,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Bologna",
+          "gol": 1,
+          "assist": 10
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "nome": "Diego",
+      "cognome": "Russo",
+      "foto": "https://example.com/foto/diego_russo.jpg",
+      "ruolo": "Difensore",
+      "anno_nascita": 2001,
+      "nazionalita": "Argentina",
+      "squadra_attuale": "Verona",
+      "valore_market_euro": 65632290,
+      "gol_attuali": 5,
+      "assist_attuali": 1,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Inter",
+          "gol": 9,
+          "assist": 5
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "nome": "Arthur",
+      "cognome": "Russo",
+      "foto": "https://example.com/foto/arthur_russo.jpg",
+      "ruolo": "Difensore",
+      "anno_nascita": 2003,
+      "nazionalita": "Francese",
+      "squadra_attuale": "Verona",
+      "valore_market_euro": 32718553,
+      "gol_attuali": 2,
+      "assist_attuali": 1,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Inter",
+          "gol": 6,
+          "assist": 3
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "nome": "Kevin",
+      "cognome": "Esposito",
+      "foto": "https://example.com/foto/kevin_esposito.jpg",
+      "ruolo": "Difensore",
+      "anno_nascita": 2004,
+      "nazionalita": "Portoghese",
+      "squadra_attuale": "Roma",
+      "valore_market_euro": 15758872,
+      "gol_attuali": 0,
+      "assist_attuali": 2,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Torino",
+          "gol": 1,
+          "assist": 1
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "nome": "Andrea",
+      "cognome": "Taylor",
+      "foto": "https://example.com/foto/andrea_taylor.jpg",
+      "ruolo": "Difensore",
+      "anno_nascita": 1991,
+      "nazionalita": "Olandese",
+      "squadra_attuale": "Atalanta",
+      "valore_market_euro": 45806455,
+      "gol_attuali": 4,
+      "assist_attuali": 6,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Bologna",
+          "gol": 5,
+          "assist": 0
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "nome": "Simone",
+      "cognome": "Müller",
+      "foto": "https://example.com/foto/simone_muller.jpg",
+      "ruolo": "Difensore",
+      "anno_nascita": 2001,
+      "nazionalita": "Inglese",
+      "squadra_attuale": "Lazio",
+      "valore_market_euro": 18228926,
+      "gol_attuali": 0,
+      "assist_attuali": 0,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Atalanta",
+          "gol": 5,
+          "assist": 0
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "nome": "David",
+      "cognome": "Williams",
+      "foto": "https://example.com/foto/david_williams.jpg",
+      "ruolo": "Difensore",
+      "anno_nascita": 1994,
+      "nazionalita": "Olandese",
+      "squadra_attuale": "Napoli",
+      "valore_market_euro": 51508432,
+      "gol_attuali": 6,
+      "assist_attuali": 0,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Milan",
+          "gol": 10,
+          "assist": 0
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "nome": "Oliver",
+      "cognome": "Silva",
+      "foto": "https://example.com/foto/oliver_silva.jpg",
+      "ruolo": "Attaccante",
+      "anno_nascita": 1998,
+      "nazionalita": "Argentina",
+      "squadra_attuale": "Fiorentina",
+      "valore_market_euro": 75624094,
+      "gol_attuali": 5,
+      "assist_attuali": 5,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Bologna",
+          "gol": 4,
+          "assist": 14
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "nome": "Tommaso",
+      "cognome": "Brown",
+      "foto": "https://example.com/foto/tommaso_brown.jpg",
+      "ruolo": "Attaccante",
+      "anno_nascita": 2002,
+      "nazionalita": "Francese",
+      "squadra_attuale": "Napoli",
+      "valore_market_euro": 65564620,
+      "gol_attuali": 0,
+      "assist_attuali": 10,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Bologna",
+          "gol": 25,
+          "assist": 16
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "nome": "Lucas",
+      "cognome": "Fontana",
+      "foto": "https://example.com/foto/lucas_fontana.jpg",
+      "ruolo": "Centrocampista",
+      "anno_nascita": 1988,
+      "nazionalita": "Francese",
+      "squadra_attuale": "Fiorentina",
+      "valore_market_euro": 58066813,
+      "gol_attuali": 3,
+      "assist_attuali": 0,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Juventus",
+          "gol": 9,
+          "assist": 12
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "nome": "Kevin",
+      "cognome": "Romano",
+      "foto": "https://example.com/foto/kevin_romano.jpg",
+      "ruolo": "Portiere",
+      "anno_nascita": 1991,
+      "nazionalita": "Argentina",
+      "squadra_attuale": "Atalanta",
+      "valore_market_euro": 35681332,
+      "gol_attuali": 0,
+      "assist_attuali": 3,
+      "elenco_squadre_precedenti": [
+        {
+          "squadra": "Verona",
+          "gol": 0,
+          "assist": 0
+        }
+      ]
+    }
+  ]
+}

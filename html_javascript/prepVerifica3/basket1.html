@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basket1</title>
+</head>
+
+<body>
+    <style>
+        #articoli {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+    </style>
+    <div>
+        <h1>ARTICOLI</h1><br>
+        <div id="abbigliamento"><h2>Abbigliamento</h2> <br></div>
+        <div id="scarpe"><h2>Scarpe</h2> <br></div>
+        <div id="accessori"><h2>Accessori</h2> <br></div>
+        <div id="attrezzatura"><h2>Attrezzatura</h2> <br></div>
+        <div id="merch"> <h2>Merch</h2> <br></div>
+    </div>
+</body>
+<script>
+    const abbigliamento=document.getElementById("abbigliamento")
+    const scarpe=document.getElementById("scarpe")
+    const accessori=document.getElementById("accessori")
+    const attrezzatura=document.getElementById("attrezzatura")
+    const merch=document.getElementById("merch")
+
+function creaCard(articolo){
+    const card=document.createElement("div")
+    card.className="card"
+
+    const nome=document.createElement("h3")
+    nome.textContent=articolo.nome
+    const img=document.createElement("img")
+    img.src=articolo.immagine
+    const marca=document.createElement("p")
+    marca.textContent=articolo.marca
+    const prezzo=document.createElement("p")
+    prezzo.textContent=articolo.prezzo
+
+    card.appendChild(img)
+    card.appendChild(nome)
+    card.appendChild(marca)
+    card.appendChild(prezzo)
+
+    tipo=articolo.categoria
+
+    if(tipo=="abbigliamento"){
+        abbigliamento.appendChild(card)
+    }
+
+    if(tipo=="scarpe"){
+        scarpe.appendChild(card)
+    }
+    if(tipo=="accessori"){
+        accessori.appendChild(card)
+    }
+    if(tipo=="attrezzatura"){
+        attrezzatura.appendChild(card)
+    }
+    if(tipo=="merchandising"){
+        merch.appendChild(card)
+    }
+}
+    const URL="./basket.json"
+    fetch(URL)
+    .then(response=>response.json())
+    .then(dati=>{
+        datiJson=dati
+        console.log(datiJson)
+
+        datiJson.forEach(element=>{
+            creaCard(element)
+        })
+    })
+
+
+</script>
+
+</html>

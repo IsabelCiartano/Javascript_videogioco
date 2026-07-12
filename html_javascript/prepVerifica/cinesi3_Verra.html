@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card {
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px;
+        }
+        
+        .btn-aggiungiCarrello {
+            background-color: green;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        img {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="antipasto"><h1>ANTIPASTI</h1></div>
+    <div id="primoPiatto"><h1>PRIMO PIATTO</h1></div>
+    <div id="secondoPiatto"><h1>SECONDO PIATTO</h1></div>
+    <div id="contorno"><h1>CONTORNO</h1></div>
+    <div id="dolce"><h1>DOLCE</h1></div>
+    <div id="prezzoTot"><h1>PREZZO TOT CARRELLO</h1></div>
+
+    <table id="carrello">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>TIPO</th>
+                <th>NOME</th>
+                <th>PREZZO</th>
+            </tr>
+        </thead>
+        <tbody id="bodyCarrello">
+        </tbody>
+    </table>
+
+</body>
+
+    <script>
+        let prezzoTotaleCarrello = 0;
+        const tBody = document.getElementById("bodyCarrello");
+
+        const containerAntipasto = document.getElementById("antipasto");
+        const containerPrimopiatto = document.getElementById("primoPiatto");
+        const containerSecondopiatto = document.getElementById("secondoPiatto");
+        const containerContorno = document.getElementById("contorno");
+        const containerDolce = document.getElementById("dolce");
+        const containerPrezzoTot = document.getElementById("prezzoTot");
+
+        const URL = "./piatti_cinesi.json";
+
+        fetch(URL)
+                .then(response => response.json())  
+                .then(dati => {
+                    const datiJson = dati;
+                    dati.forEach(piatto => {
+                        aggiungiCardPiatto(piatto);
+                    })
+                })
+
+        function aggiungiCardPiatto(piatto){
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.innerHTML = `
+                <img src = "${piatto.immagine}" alt="${piatto.nome}">
+                <div>
+                    <h2>${piatto.nome}</h2>
+                    <h3>tipo piatto: ${piatto.tipo_piatto}</h3>
+                    <h3>prezzo : ${piatto.prezzo}</h3>
+                    <button class="btn-aggiungiCarrello">AGGIUNGI AL CARRELLO</button>
+                </div>
+            `;
+
+            const btnCarrello = card.querySelector(".btn-aggiungiCarrello");
+            btnCarrello.addEventListener("click", function(e){
+                aggiungiCarrello(piatto);
+            })
+
+            if(piatto.tipo_piatto == "antipasto"){
+                containerAntipasto.appendChild(card);
+            }else if(piatto.tipo_piatto == "primopiatto"){
+            containerPrimopiatto.appendChild(card);
+            }else if(piatto.tipo_piatto == "secondopiatto"){
+                containerSecondopiatto.appendChild(card);
+            }else if(piatto.tipo_piatto == "contorno"){
+                containerContorno.appendChild(card);
+            }else{
+                containerDolce.appendChild(card);
+            }
+        }
+
+    function aggiungiCarrello(piatto){
+        const riga = document.createElement("tr");
+        riga.innerHTML = `
+            <td>${piatto.id}</td>
+            <td>${piatto.tipo_piatto}</td>
+            <td>${piatto.nome}</td>
+            <td>${piatto.prezzo}</td>
+        `;
+        tBody.appendChild(riga);
+        prezzoTotaleCarrello += piatto.prezzo; 
+        
+        const prezzoTot = document.createElement("div");
+        containerPrezzoTot.innerHTML = "";
+        prezzoTot.innerHTML = `
+
+            <div><h3>${prezzoTotaleCarrello}</h3></div>
+
+        `;
+        containerPrezzoTot.appendChild(prezzoTot);
+    }
+
+    </script>
+
+</html>

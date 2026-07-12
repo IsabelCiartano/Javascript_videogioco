@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "nome": "Maglia Gara Home",
+    "descrizione": "Maglia da gara ufficiale preparata con tessuti traspiranti di alta qualità, design fedele alla tradizione del club.",
+    "descrizione_breve": "Maglia ufficiale della squadra per le partite in casa.",
+    "immagine": "https://example.com/maglia_gara_home.jpg",
+    "tipo_articolo": "abbigliamento",
+    "materiali": ["poliestere", "elastan", "cotone"],
+    "prezzo": 85.50
+  },
+  {
+    "id": 2,
+    "nome": "Scarpe da Calcio Pro",
+    "descrizione": "Scarpe professionali con tacchetti in alluminio intercambiabili, ideali per terreni morbidi.",
+    "descrizione_breve": "Scarpe da calcio per campi in erba naturale.",
+    "immagine": "https://example.com/scarpe_calcio_pro.jpg",
+    "tipo_articolo": "calzature",
+    "materiali": ["pelle sintetica", "nylon", "alluminio", "gomma"],
+    "prezzo": 125.00
+  },
+  {
+    "id": 3,
+    "nome": "Pallone Ufficiale",
+    "descrizione": "Pallone omologato FIFA Quality Pro, con cuciture termosaldate per una traiettoria perfetta.",
+    "descrizione_breve": "Pallone da gara ufficiale misura 5.",
+    "immagine": "https://example.com/pallone_ufficiale.jpg",
+    "tipo_articolo": "attrezzatura",
+    "materiali": ["poliuretano", "gomma", "poliestere"],
+    "prezzo": 110.00
+  },
+  {
+    "id": 4,
+    "nome": "Sciarpa Ultras",
+    "descrizione": "Sciarpa invernale con i colori della squadra e frange alle estremità.",
+    "descrizione_breve": "Sciarpa da stadio classica.",
+    "immagine": "https://example.com/sciarpa_ultras.jpg",
+    "tipo_articolo": "merchandising",
+    "materiali": ["lana", "acrilico", "cotone"],
+    "prezzo": 18.50
+  },
+  {
+    "id": 5,
+    "nome": "Parastinchi in Carbonio",
+    "descrizione": "Parastinchi leggeri e ultra resistenti, dotati di calza a compressione per il mantenimento in posizione.",
+    "descrizione_breve": "Parastinchi protettivi professionali.",
+    "immagine": "https://example.com/parastinchi.jpg",
+    "tipo_articolo": "accessori",
+    "materiali": ["fibra di carbonio", "schiuma EVA", "elastan"],
+    "prezzo": 45.00
+  },
+  {
+    "id": 6,
+    "nome": "Guanti da Portiere Grip+",
+    "descrizione": "Guanti con palmo in lattice da 4mm per una presa sicura in ogni condizione meteorologica.",
+    "descrizione_breve": "Guanti da portiere professionali.",
+    "immagine": "https://example.com/guanti_portiere.jpg",
+    "tipo_articolo": "accessori",
+    "materiali": ["lattice", "poliestere", "gomma", "velcro"],
+    "prezzo": 65.90
+  },
+  {
+    "id": 7,
+    "nome": "Tuta da Allenamento",
+    "descrizione": "Completo giacca e pantalone tecnico, ideale per le sessioni di allenamento invernali.",
+    "descrizione_breve": "Tuta tecnica per l'inverno.",
+    "immagine": "https://example.com/tuta_allenamento.jpg",
+    "tipo_articolo": "abbigliamento",
+    "materiali": ["poliestere", "pile", "nylon"],
+    "prezzo": 95.00
+  },
+  {
+    "id": 8,
+    "nome": "Scarpe da Calcetto Indoor",
+    "descrizione": "Calzatura con suola liscia in gomma non marking, perfetta per il parquet o il cemento.",
+    "descrizione_breve": "Scarpe da futsal per indoor.",
+    "immagine": "https://example.com/scarpe_calcetto.jpg",
+    "tipo_articolo": "calzature",
+    "materiali": ["pelle sintetica", "gomma", "tessuto mesh"],
+    "prezzo": 75.40
+  },
+  {
+    "id": 9,
+    "nome": "Borsone Sportivo",
+    "descrizione": "Borsone capiente con scomparto rigido separato per le scarpe e tracolla imbottita.",
+    "descrizione_breve": "Borsa da calcio con portascarpe.",
+    "immagine": "https://example.com/borsone.jpg",
+    "tipo_articolo": "accessori",
+    "materiali": ["nylon", "plastica rigida", "poliestere"],
+    "prezzo": 40.00
+  },
+  {
+    "id": 10,
+    "nome": "Set Coni da Allenamento",
+    "descrizione": "Set di 50 cinesini colorati flessibili, indispensabili per preparare il campo e gli esercizi.",
+    "descrizione_breve": "Cinesini segnacampo flessibili.",
+    "immagine": "https://example.com/coni_allenamento.jpg",
+    "tipo_articolo": "attrezzatura",
+    "materiali": ["plastica", "pvc flessibile"],
+    "prezzo": 22.50
+  },
+  {
+    "id": 11,
+    "nome": "Borraccia Squadra",
+    "descrizione": "Borraccia in alluminio da 750ml con logo stampato a laser e tappo ermetico.",
+    "descrizione_breve": "Borraccia ufficiale in alluminio.",
+    "immagine": "https://example.com/borraccia.jpg",
+    "tipo_articolo": "merchandising",
+    "materiali": ["alluminio", "plastica senza bpa", "silicone"],
+    "prezzo": 12.00
+  },
+  {
+    "id": 12,
+    "nome": "Pettorina Allenamento",
+    "descrizione": "Pettorina traforata ad alta visibilità per dividere le squadre durante le partitelle.",
+    "descrizione_breve": "Pettorina in rete traspirante.",
+    "immagine": "https://example.com/pettorina.jpg",
+    "tipo_articolo": "abbigliamento",
+    "materiali": ["poliestere mesh"],
+    "prezzo": 6.50
+  },
+  {
+    "id": 13,
+    "nome": "Fascia da Capitano",
+    "descrizione": "Fascia elastica regolabile con chiusura in velcro e stemma del club.",
+    "descrizione_breve": "Fascia capitano ufficiale.",
+    "immagine": "https://example.com/fascia_capitano.jpg",
+    "tipo_articolo": "accessori",
+    "materiali": ["elastan", "poliestere", "velcro"],
+    "prezzo": 15.00
+  },
+  {
+    "id": 14,
+    "nome": "Lavagna Tattica Magnetica",
+    "descrizione": "Lavagna per allenatori con pedine magnetiche e pennarello cancellabile.",
+    "descrizione_breve": "Lavagna magnetica per schemi.",
+    "immagine": "https://example.com/lavagna_tattica.jpg",
+    "tipo_articolo": "attrezzatura",
+    "materiali": ["metallo", "plastica", "magnete"],
+    "prezzo": 35.80
+  },
+  {
+    "id": 15,
+    "nome": "Cappellino Visiera Piatta",
+    "descrizione": "Cappellino stile snapback con logo ricamato in 3D sul pannello frontale.",
+    "descrizione_breve": "Cappellino ufficiale con visiera.",
+    "immagine": "https://example.com/cappellino.jpg",
+    "tipo_articolo": "merchandising",
+    "materiali": ["cotone", "poliestere"],
+    "prezzo": 24.90
+  }
+]
